@@ -6,7 +6,6 @@ let fontFamily;
 let enableLigatures;
 
 const stripInitialIndent = node => {
-	console.log(node.innerHTML);
 	const initialSpans = Array.from(node.querySelectorAll('div > span:first-child'));
 	if (initialSpans.some(span => !span.textContent.match(/^\s+/))) return;
 	const minIndent = Math.min(
