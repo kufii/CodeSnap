@@ -20,29 +20,40 @@
 				flex-flow: column;
 				align-items: center;
 			}
-			#content-container {
+			#snippet-container {
 				display: flex;
 				justify-content: center;
 				align-items: center;
 				overflow: hidden;
 				resize: both;
 				border-radius: 4px;
-				opacity: 1;
-				transition: opacity 0.4s;
 				width: calc(100% - 4rem);
 			}
-			#content {
-				overflow: hidden;
-				resize: horizontal;
+			#window {
+				position: relative;
 				display: flex;
-				padding: 18px;
+				max-width: calc(100% - 128px);
+				align-items: flex-start;
+				flex-direction: column;
 				margin-top: 64px;
 				margin-bottom: 64px;
+				min-width: 100px;
+				max-width: 100%;
 				border-radius: 5px;
-				box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
-				width: calc(100% - 8rem);
+				box-shadow: rgba(0, 0, 0, 0.3) 0px 15px 30px;
+				overflow: hidden;
+				resize: horizontal;
+				padding: 18px;
 			}
-			#content > div {
+			#navbar {
+				display: flex;
+				overflow: hidden;
+			}
+			#snippet {
+				display: flex;
+				padding-top: 15px;
+			}
+			#snippet > div {
 				display: flex;
 				flex-flow: column nowrap;
 				justify-content: center;
@@ -50,7 +61,7 @@
 				white-space: pre-wrap !important;
 				word-break: break-all;
 			}
-			#content > div > div {
+			#snippet > div > div {
 				display: flex;
 				flex-wrap: wrap;
 			}
@@ -58,6 +69,21 @@
 				margin-top: 40px;
 				margin-bottom: 60px;
 				text-align: center;
+			}
+			.red-dot,
+			.yellow-dot,
+			.green-dot {
+				width: 15px;
+				height: 15px;
+				border-radius: 8px;
+				background-color: #ff5f5a;
+				margin-right: 10px;
+			}
+			.yellow-dot {
+				background-color: #ffbe2e;
+			}
+			.green-dot {
+				background-color: #2aca44;
 			}
 			.obturateur {
 				width: 64px;
@@ -72,8 +98,15 @@
 		</style>
 	</head>
 	<body>
-		<div id="content-container">
-			<div id="content"></div>
+		<div id="snippet-container">
+			<div id="window">
+				<div id="navbar">
+					<div class="dot red-dot"></div>
+					<div class="dot yellow-dot"></div>
+					<div class="dot green-dot"></div>
+				</div>
+				<div id="snippet"></div>
+			</div>
 		</div>
 
 		<div id="save-container">
