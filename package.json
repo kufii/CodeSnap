@@ -1,0 +1,37 @@
+{
+  "name": "codesnap",
+  "displayName": "CodeSnap",
+  "description": "Take beautiful screenshots of your code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.38.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onCommand:codesnap.start"
+  ],
+  "main": "./src/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codesnap.start",
+        "title": "CodeSnap 📸"
+      }
+    ]
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{js,jsx,md,json,css,prettierrc,eslintrc}\""
+  },
+  "devDependencies": {
+    "eslint": "^6.4.0",
+    "eslint-config-adpyke-es6": "^1.4.12",
+    "eslint-config-prettier": "^6.3.0",
+    "glob": "^7.1.4"
+  },
+  "dependencies": {
+    "prettier": "^1.18.2"
+  }
+}
