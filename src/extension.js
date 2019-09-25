@@ -1,22 +1,8 @@
 'use strict';
 
 const vscode = require('vscode');
-const fs = require('fs');
 const path = require('path');
-const { promisify } = require('util');
-const commentJson = require('comment-json');
-
-const readFile = promisify(fs.readFile);
-
-const memo = (fn, cache = {}) => x => cache[x] || (cache[x] = fn(x));
-
-const readHtml = async htmlPath => {
-	const html = await readFile(htmlPath, 'utf-8');
-	return html.replace(/script src="([^"]*)"/g, (_, src) => {
-		const realSource = 'vscode-resource:' + path.resolve(htmlPath, '..', src);
-		return `script src="${realSource}"`;
-	});
-};
+const { readHtml, getColorsForTheme } = require('./util');
 
 const defaultThemeLineColors = {
 	'Visual Studio Dark': '#858585',
@@ -25,41 +11,6 @@ const defaultThemeLineColors = {
 	'Default Light+': '#237893',
 	'Default High Contrast': '#FFFFFF'
 };
-
-const getColorsForTheme = memo(async themeName => {
-	const colors = new Map();
-
-	let currentThemePath;
-	for (const extension of vscode.extensions.all) {
-		const themes =
-			extension.packageJSON.contributes && extension.packageJSON.contributes.themes;
-		const currentTheme = themes && themes.find(theme => theme.label === themeName);
-		if (currentTheme) {
-			currentThemePath = path.join(extension.extensionPath, currentTheme.path);
-			break;
-		}
-	}
-	const themePaths = [];
-	if (currentThemePath) {
-		themePaths.push(currentThemePath);
-	}
-	while (themePaths.length > 0) {
-		const themePath = themePaths.pop();
-		let theme = await readFile(themePath, 'utf-8');
-		if (theme) {
-			theme = commentJson.parse(theme);
-			if (theme.include) {
-				themePaths.push(path.join(path.dirname(themePath), theme.include));
-			}
-			if (theme.colors) {
-				Object.entries(theme.colors).forEach(
-					([key, value]) => !colors.has(key) && colors.set(key, value)
-				);
-			}
-		}
-	}
-	return colors;
-});
 
 const getConfig = async () => {
 	const editorSettings = vscode.workspace.getConfiguration('editor', null);
