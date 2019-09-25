@@ -10,18 +10,17 @@ const stripInitialIndent = node => {
 };
 
 const addLineNumbers = (node, startLine = 1) => {
-	const rows = Array.from(node.querySelectorAll(':scope > div, :scope > br'));
+	Array.from(node.querySelectorAll(':scope > br')).forEach(
+		row => (row.outerHTML = '<div><span>&nbsp;</span></div>')
+	);
+	const rows = Array.from(node.querySelectorAll(':scope > div'));
 	rows.forEach((row, i) => {
 		const num = document.createElement('span');
 		num.classList.add('line-number');
-		if (row.tagName === 'DIV') {
-			row.prepend(num);
-		} else {
-			row.outerHTML = `<div>${num.outerHTML}</div>`;
-		}
+		row.prepend(num);
 		num.textContent = startLine + rows.length - 1;
 		num.style.width = num.clientWidth + 1 + 'px';
-		num.style.paddingRight = '10px';
+		num.style.paddingRight = '20px';
 		num.textContent = startLine + i;
 	});
 };
