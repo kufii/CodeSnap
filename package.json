@@ -32,7 +32,5 @@
     "glob": "^7.1.4",
     "prettier": "^1.18.2"
   },
-  "dependencies": {
-    "json5": "^2.1.0"
-  }
+  "dependencies": {}
 }
