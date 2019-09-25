@@ -1,5 +1,4 @@
 const snippetNode = document.getElementById('snippet');
-const snippetContainerNode = document.getElementById('snippet-container');
 
 const stripInitialIndent = node => {
 	const initialSpans = Array.from(node.querySelectorAll(':scope > div > span:first-child'));
@@ -38,7 +37,6 @@ window.addEventListener('message', e => {
 	if (e.data.type === 'update') {
 		const { enableLigatures } = e.data;
 		snippetNode.style.fontVariantLigatures = enableLigatures ? 'normal' : 'none';
-		snippetContainerNode.style.backgroundColor = '#f2f2f2';
 		document.execCommand('paste');
 	}
 });
