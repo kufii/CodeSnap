@@ -30,6 +30,16 @@ module.exports.activate = context => {
         panel.postMessage({ type: 'update', ...getConfig() });
       };
 
+      const editor = vscode.window.activeTextEditor;
+      const selection = editor && editor.selection;
+      if (
+        selection &&
+        (selection.start.line !== selection.end.line ||
+          selection.start.character !== selection.end.character)
+      ) {
+        update();
+      }
+
       const selectionHandler = vscode.window.onDidChangeTextEditorSelection(e => {
         if (!e.selections[0] || e.selections[0].isEmpty) return;
         update();
