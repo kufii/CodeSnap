@@ -10,7 +10,7 @@ const readFile = promisify(fs.readFile);
 
 const memo = (fn, cache = {}) => x => cache[x] || (cache[x] = fn(x));
 
-const stripTrailingJsonCommas = json => json.replace(/,(?!\s*?[\{\[\"\'\w])/g, '');
+const stripTrailingJsonCommas = json => json.replace(/,(?!\s*?[{["'\w])/g, '');
 
 const readHtml = async htmlPath => {
 	const html = await readFile(htmlPath, 'utf-8');
