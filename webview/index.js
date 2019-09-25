@@ -45,8 +45,9 @@ document.addEventListener('paste', e => {
 
 window.addEventListener('message', e => {
   if (e.data.type === 'update') {
-    const { enableLigatures } = e.data;
+    const { enableLigatures, tabSize } = e.data;
     snippetNode.style.fontVariantLigatures = enableLigatures ? 'normal' : 'none';
+    snippetNode.style.tabSize = tabSize;
     document.execCommand('paste');
   }
 });

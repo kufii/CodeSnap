@@ -7,8 +7,9 @@ const { readHtml } = require('./util');
 const getConfig = () => {
   const editorSettings = vscode.workspace.getConfiguration('editor', null);
   const enableLigatures = editorSettings.get('fontLigatures', false);
+  const tabSize = editorSettings.get('tabSize', 4);
 
-  return { enableLigatures };
+  return { enableLigatures, tabSize };
 };
 
 module.exports.activate = context => {
