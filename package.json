@@ -33,6 +33,6 @@
     "prettier": "^1.18.2"
   },
   "dependencies": {
-    "strip-json-comments": "^3.0.1"
+    "comment-json": "^2.2.0"
   }
 }

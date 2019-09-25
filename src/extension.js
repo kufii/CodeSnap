@@ -4,13 +4,11 @@ const vscode = require('vscode');
 const fs = require('fs');
 const path = require('path');
 const { promisify } = require('util');
-const stripJsonComments = require('strip-json-comments');
+const commentJson = require('comment-json');
 
 const readFile = promisify(fs.readFile);
 
 const memo = (fn, cache = {}) => x => cache[x] || (cache[x] = fn(x));
-
-const stripTrailingJsonCommas = json => json.replace(/,(?!\s*?[{["'\w])/g, '');
 
 const readHtml = async htmlPath => {
 	const html = await readFile(htmlPath, 'utf-8');
@@ -49,7 +47,7 @@ const getColorsForTheme = memo(async themeName => {
 		const themePath = themePaths.pop();
 		let theme = await readFile(themePath, 'utf-8');
 		if (theme) {
-			theme = JSON.parse(stripTrailingJsonCommas(stripJsonComments(theme)));
+			theme = commentJson.parse(theme);
 			if (theme.include) {
 				themePaths.push(path.join(path.dirname(themePath), theme.include));
 			}
