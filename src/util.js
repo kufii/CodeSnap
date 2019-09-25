@@ -1,22 +1,14 @@
 'use strict';
 
-const fs = require('fs');
-const { promisify } = require('util');
+const { readFile } = require('fs').promises;
 const path = require('path');
-
-const readFile = promisify(fs.readFile);
-const writeFile = promisify(fs.writeFile);
 
 const readHtml = async htmlPath => {
   const html = await readFile(htmlPath, 'utf-8');
-  return html.replace(/script src="([^"]*)"/g, (_, src) => {
-    const realSource = 'vscode-resource:' + path.resolve(htmlPath, '..', src);
-    return `script src="${realSource}"`;
-  });
+  return html.replace(
+    /script src="([^"]*)"/g,
+    (_, src) => `script src="vscode-resource:${path.resolve(htmlPath, '..', src)}"`
+  );
 };
 
-module.exports = {
-  readFile,
-  writeFile,
-  readHtml
-};
+module.exports = { readHtml };

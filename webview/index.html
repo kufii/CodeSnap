@@ -12,6 +12,7 @@
     <script src="./index.js" type="module" defer></script>
     <style>
       html {
+        --initial-line-number: 0;
         box-sizing: border-box;
         padding-top: 32px;
       }
@@ -24,10 +25,10 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin: auto;
         overflow: hidden;
-        resize: both;
         border-radius: 4px;
-        width: calc(100% - 4rem);
+        padding: 3em;
         background-color: #abb8c3;
       }
       #window {
@@ -36,8 +37,6 @@
         max-width: calc(100% - 128px);
         align-items: flex-start;
         flex-direction: column;
-        margin-top: 64px;
-        margin-bottom: 64px;
         min-width: 100px;
         max-width: 100%;
         border-radius: 5px;
@@ -52,27 +51,30 @@
         overflow: hidden;
       }
       #snippet {
-        display: flex;
         padding-top: 15px;
+        max-width: 100%;
+        white-space: pre-wrap;
+        word-break: break-all;
+        color: var(--vscode-editor-foreground);
+        background-color: var(--vscode-editor-background);
+        font-family: var(--vscode-editor-font-family);
+        font-size: calc(var(--vscode-editor-font-size) * 1px);
+        counter-reset: line-number var(--initial-line-number);
       }
       #snippet > div {
         display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        max-width: 100%;
-        white-space: pre-wrap !important;
-        word-break: break-all;
-        color: var(--vscode-editor-foreground);
-        background-color: var(--vscode-editor-background) !important;
-        font-family: var(--vscode-editor-font-family) !important;
       }
-      #snippet > div > div {
-        display: flex;
-        flex-wrap: wrap;
-      }
-      .line-number {
+      #snippet > div::before {
+        counter-increment: line-number;
+        content: counter(line-number);
         text-align: right;
         color: var(--vscode-editorLineNumber-foreground);
+        align-self: center;
+        padding-right: 18px;
+        width: calc(var(--vscode-editor-font-size) * var(--line-number-width) * 1px);
+      }
+      #snippet > div > div:last-child {
+        flex: 1;
       }
       #save-container {
         margin-top: 40px;
