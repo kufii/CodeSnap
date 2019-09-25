@@ -5,10 +5,19 @@ const snippetNode = $('#snippet');
 
 const regIndent = /^\s+/;
 
+const calcTextWidth = text => {
+  const div = document.body.appendChild(document.createElement('div'));
+  div.classList.add('size-test');
+  div.textContent = text;
+  const width = div.clientWidth;
+  div.remove();
+  return width + 1 + 'px';
+};
+
 const addLineNumbers = node => {
   $$(':scope > br', node).forEach(row => (row.outerHTML = '<div>&nbsp;</div>'));
   const rows = $$(':scope > div', node);
-  node.style.setProperty('--line-number-width', rows.length.toString().length);
+  node.style.setProperty('--line-number-width', calcTextWidth(rows.length));
   rows.forEach(row => {
     const div = document.createElement('div');
     row.replaceWith(div);
@@ -45,9 +54,10 @@ document.addEventListener('paste', e => {
 
 window.addEventListener('message', e => {
   if (e.data.type === 'update') {
-    const { enableLigatures, tabSize } = e.data;
+    const { enableLigatures, tabSize, enableLineNumbers = true } = e.data;
     snippetNode.style.fontVariantLigatures = enableLigatures ? 'normal' : 'none';
     snippetNode.style.tabSize = tabSize;
+    snippetNode.classList[enableLineNumbers ? 'add' : 'remove']('has-line-numbers');
     document.execCommand('paste');
   }
 });
