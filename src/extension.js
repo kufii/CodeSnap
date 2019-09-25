@@ -6,10 +6,9 @@ const { readHtml } = require('./util');
 
 const getConfig = () => {
 	const editorSettings = vscode.workspace.getConfiguration('editor', null);
-	const fontFamily = editorSettings.get('fontFamily', 'monospace');
 	const enableLigatures = editorSettings.get('fontLigatures', false);
 
-	return { fontFamily, enableLigatures };
+	return { enableLigatures };
 };
 
 module.exports.activate = context => {

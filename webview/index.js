@@ -2,10 +2,6 @@ const snippetNode = document.getElementById('snippet');
 const snippetContainerNode = document.getElementById('snippet-container');
 const windowNode = document.getElementById('window');
 
-let fontFamily;
-let enableLigatures;
-let lineNumberColor;
-
 const stripInitialIndent = node => {
 	const initialSpans = Array.from(node.querySelectorAll(':scope > div > span:first-child'));
 	if (initialSpans.some(span => !span.textContent.match(/^\s+/))) return;
@@ -28,7 +24,6 @@ const addLineNumbers = (node, startLine = 1) => {
 		num.textContent = startLine + rows.length - 1;
 		num.style.width = num.clientWidth + 1 + 'px';
 		num.style.paddingRight = '10px';
-		num.style.color = lineNumberColor;
 		num.textContent = startLine + i;
 	});
 };
@@ -38,14 +33,12 @@ document.addEventListener('paste', e => {
 	const div = snippetNode.querySelector('div');
 	stripInitialIndent(div);
 	addLineNumbers(div);
-	div.style.fontFamily = fontFamily;
-	div.style.fontVariantLigatures = enableLigatures ? 'normal' : 'none';
-	windowNode.style.backgroundColor = div.style.backgroundColor;
 });
 
 window.addEventListener('message', e => {
 	if (e.data.type === 'update') {
-		({ fontFamily, enableLigatures, lineNumberColor } = e.data);
+		const { enableLigatures } = e.data;
+		snippetNode.style.fontVariantLigatures = enableLigatures ? 'normal' : 'none';
 		snippetContainerNode.style.backgroundColor = '#f2f2f2';
 		document.execCommand('paste');
 	}
