@@ -41,7 +41,6 @@ document.addEventListener('paste', e => {
 	div.style.fontFamily = fontFamily;
 	div.style.fontVariantLigatures = enableLigatures ? 'normal' : 'none';
 	windowNode.style.backgroundColor = div.style.backgroundColor;
-	console.log(snippetNode.innerHTML);
 });
 
 window.addEventListener('message', e => {
