@@ -1,6 +1,5 @@
 const snippetNode = document.getElementById('snippet');
 const snippetContainerNode = document.getElementById('snippet-container');
-const windowNode = document.getElementById('window');
 
 const stripInitialIndent = node => {
 	const initialSpans = Array.from(node.querySelectorAll(':scope > div > span:first-child'));
