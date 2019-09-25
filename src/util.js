@@ -4,7 +4,7 @@ const vscode = require('vscode');
 const fs = require('fs');
 const { promisify } = require('util');
 const path = require('path');
-const commentJson = require('comment-json');
+const JSON5 = require('json5');
 
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
@@ -40,7 +40,7 @@ const getColorsForTheme = memo(async themeName => {
 		const themePath = themePaths.pop();
 		let theme = await readFile(themePath, 'utf-8');
 		if (theme) {
-			theme = commentJson.parse(theme);
+			theme = JSON5.parse(theme);
 			if (theme.include) {
 				themePaths.push(path.join(path.dirname(themePath), theme.include));
 			}
