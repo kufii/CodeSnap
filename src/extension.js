@@ -16,46 +16,16 @@ const readHtml = async htmlPath => {
 	});
 };
 
-const getConfig = async () => {
-	const editorSettings = vscode.workspace.getConfiguration('editor', null);
-	const fontFamily = editorSettings.get('fontFamily', 'monospace');
-	const enableLigatures = editorSettings.get('fontLigatures', false);
-
-	const theme = vscode.workspace.getConfiguration('workbench').get('colorTheme');
-	const colors = theme && (await getColorsForTheme(theme));
-	const lineNumberColor =
-		colors &&
-		(colors.get('editorLineNumber.foreground') ||
-			colors.get('editorLineNumber.activeForeground'));
-
-	console.log(theme, lineNumberColor);
-
-	return { fontFamily, enableLigatures, lineNumberColor };
+const defaultThemeLineColors = {
+	'Visual Studio Dark': '#858585',
+	'Default Dark+': '#858585',
+	'Visual Studio Light': '#237893',
+	'Default Light+': '#237893',
+	'Default High Contrast': '#FFFFFF'
 };
 
 const getColorsForTheme = async themeName => {
 	const colors = new Map();
-
-	if (
-		[
-			'Visual Studio Dark',
-			'Default Dark+',
-			'Visual Studio Light',
-			'Default Light+',
-			'Default High Contrast'
-		].includes(themeName)
-	) {
-		// Can't get default theme colors programmatically
-		colors.set(
-			'editorLineNumber.foreground',
-			themeName.includes('Dark')
-				? '#858585'
-				: themeName.includes('Light')
-				? '#237893'
-				: '#FFFFFF'
-		);
-		return colors;
-	}
 
 	let currentThemePath;
 	for (const extension of vscode.extensions.all) {
@@ -87,6 +57,26 @@ const getColorsForTheme = async themeName => {
 		}
 	}
 	return colors;
+};
+
+const getConfig = async () => {
+	const editorSettings = vscode.workspace.getConfiguration('editor', null);
+	const fontFamily = editorSettings.get('fontFamily', 'monospace');
+	const enableLigatures = editorSettings.get('fontLigatures', false);
+
+	const theme = vscode.workspace.getConfiguration('workbench').get('colorTheme');
+	const colors =
+		theme && defaultThemeLineColors[theme]
+			? new Map([['editorLineNumber.foreground', defaultThemeLineColors[theme]]])
+			: await getColorsForTheme(theme);
+	const lineNumberColor =
+		colors &&
+		(colors.get('editorLineNumber.foreground') ||
+			colors.get('editorLineNumber.activeForeground'));
+
+	console.log(theme, lineNumberColor);
+
+	return { fontFamily, enableLigatures, lineNumberColor };
 };
 
 module.exports.activate = context => {
