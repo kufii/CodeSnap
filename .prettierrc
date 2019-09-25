@@ -1,14 +1,6 @@
 {
   "singleQuote": true,
   "printWidth": 100,
-  "useTabs": true,
-  "overrides": [
-    {
-      "files": ["*.json", ".prettierrc", ".eslintrc", ".babelrc", "*.md"],
-      "options": {
-        "useTabs": false,
-        "tabWidth": 2
-      }
-    }
-  ]
+  "useTabs": false,
+  "tabWidth": 2
 }

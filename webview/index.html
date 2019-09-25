@@ -1,191 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-		<meta
-			http-equiv="Content-Security-Policy"
-			content="img-src vscode-resource: data: https:; script-src vscode-resource:; style-src 'unsafe-inline' vscode-resource:;"
-		/>
-		<title>CodeSnap 📸</title>
-		<script src="./index.js" type="module" defer></script>
-		<style>
-			html {
-				box-sizing: border-box;
-				padding-top: 32px;
-			}
-			body {
-				display: flex;
-				flex-flow: column;
-				align-items: center;
-			}
-			#snippet-container {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				overflow: hidden;
-				resize: both;
-				border-radius: 4px;
-				width: calc(100% - 4rem);
-				background-color: #abb8c3;
-			}
-			#window {
-				position: relative;
-				display: flex;
-				max-width: calc(100% - 128px);
-				align-items: flex-start;
-				flex-direction: column;
-				margin-top: 64px;
-				margin-bottom: 64px;
-				min-width: 100px;
-				max-width: 100%;
-				border-radius: 5px;
-				box-shadow: rgba(0, 0, 0, 0.3) 0px 15px 30px;
-				overflow: hidden;
-				resize: horizontal;
-				padding: 18px;
-				background-color: var(--vscode-editor-background);
-			}
-			#navbar {
-				display: flex;
-				overflow: hidden;
-			}
-			#snippet {
-				display: flex;
-				padding-top: 15px;
-			}
-			#snippet > div {
-				display: flex;
-				flex-flow: column nowrap;
-				justify-content: center;
-				max-width: 100%;
-				white-space: pre-wrap !important;
-				word-break: break-all;
-				color: var(--vscode-editor-foreground);
-				background-color: var(--vscode-editor-background) !important;
-				font-family: var(--vscode-editor-font-family) !important;
-			}
-			#snippet > div > div {
-				display: flex;
-				flex-wrap: wrap;
-			}
-			.line-number {
-				text-align: right;
-				color: var(--vscode-editorLineNumber-foreground);
-			}
-			#save-container {
-				margin-top: 40px;
-				margin-bottom: 60px;
-				text-align: center;
-			}
-			.dot {
-				width: 15px;
-				height: 15px;
-				border-radius: 50%;
-				margin-right: 10px;
-			}
-			.red {
-				background-color: #ff5f5a;
-			}
-			.yellow {
-				background-color: #ffbe2e;
-			}
-			.green {
-				background-color: #2aca44;
-			}
-			.obturateur {
-				width: 64px;
-				height: 64px;
-			}
-			.obturateur * {
-				transition: stroke 0.4s;
-			}
-			.obturateur:not(.filling) path {
-				opacity: 0.5;
-			}
-		</style>
-	</head>
-	<body>
-		<div id="snippet-container">
-			<div id="window">
-				<div id="navbar">
-					<div class="red dot"></div>
-					<div class="yellow dot"></div>
-					<div class="green dot"></div>
-				</div>
-				<div id="snippet"></div>
-			</div>
-		</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="img-src vscode-resource: data: https:; script-src vscode-resource:; style-src 'unsafe-inline' vscode-resource:;"
+    />
+    <title>CodeSnap 📸</title>
+    <script src="./index.js" type="module" defer></script>
+    <style>
+      html {
+        box-sizing: border-box;
+        padding-top: 32px;
+      }
+      body {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+      }
+      #snippet-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        resize: both;
+        border-radius: 4px;
+        width: calc(100% - 4rem);
+        background-color: #abb8c3;
+      }
+      #window {
+        position: relative;
+        display: flex;
+        max-width: calc(100% - 128px);
+        align-items: flex-start;
+        flex-direction: column;
+        margin-top: 64px;
+        margin-bottom: 64px;
+        min-width: 100px;
+        max-width: 100%;
+        border-radius: 5px;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 15px 30px;
+        overflow: hidden;
+        resize: horizontal;
+        padding: 18px;
+        background-color: var(--vscode-editor-background);
+      }
+      #navbar {
+        display: flex;
+        overflow: hidden;
+      }
+      #snippet {
+        display: flex;
+        padding-top: 15px;
+      }
+      #snippet > div {
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        max-width: 100%;
+        white-space: pre-wrap !important;
+        word-break: break-all;
+        color: var(--vscode-editor-foreground);
+        background-color: var(--vscode-editor-background) !important;
+        font-family: var(--vscode-editor-font-family) !important;
+      }
+      #snippet > div > div {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .line-number {
+        text-align: right;
+        color: var(--vscode-editorLineNumber-foreground);
+      }
+      #save-container {
+        margin-top: 40px;
+        margin-bottom: 60px;
+        text-align: center;
+      }
+      .dot {
+        width: 15px;
+        height: 15px;
+        border-radius: 50%;
+        margin-right: 10px;
+      }
+      .red {
+        background-color: #ff5f5a;
+      }
+      .yellow {
+        background-color: #ffbe2e;
+      }
+      .green {
+        background-color: #2aca44;
+      }
+      .obturateur {
+        width: 64px;
+        height: 64px;
+      }
+      .obturateur * {
+        transition: stroke 0.4s;
+      }
+      .obturateur:not(.filling) path {
+        opacity: 0.5;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="snippet-container">
+      <div id="window">
+        <div id="navbar">
+          <div class="red dot"></div>
+          <div class="yellow dot"></div>
+          <div class="green dot"></div>
+        </div>
+        <div id="snippet"></div>
+      </div>
+    </div>
 
-		<div id="save-container">
-			<svg
-				id="save"
-				class="obturateur"
-				width="132px"
-				height="132px"
-				viewBox="0 0 132 132"
-				version="1.1"
-				xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink"
-			>
-				<g
-					id="Page-1"
-					stroke="none"
-					stroke-width="1"
-					fill="none"
-					fill-rule="evenodd"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<g id="obturateur" transform="translate(2.000000, 2.000000)" stroke-width="3">
-						<circle id="Oval" stroke="#4C566A" cx="64" cy="64" r="64"></circle>
-						<circle id="Oval" stroke="#4C566A" cx="64" cy="64" r="60.9706667"></circle>
-						<circle id="Oval" stroke="#4C566A" cx="64" cy="64" r="51.8734222"></circle>
-						<circle id="Oval" stroke="#D8DEE9" cx="64" cy="64" r="28.2595556"></circle>
-						<path
-							d="M17.0965333,86.1788444 L40.5667556,48.1998222"
-							id="Shape"
-							stroke="#EBCB8B"
-						></path>
-						<path
-							d="M15.1509333,46.5180444 L58.6026667,36.2574222"
-							id="Shape"
-							stroke="#A3BE8C"
-						></path>
-						<path
-							d="M41.8204444,17.0965333 L79.8001778,40.5660444"
-							id="Shape"
-							stroke="#8FBCBB"
-						></path>
-						<path
-							d="M81.4819556,15.1502222 L91.7425778,58.6019556"
-							id="Shape"
-							stroke="#88C0D0"
-						></path>
-						<path
-							d="M110.902756,41.8197333 L87.4332444,79.8001778"
-							id="Shape"
-							stroke="#81A1C1"
-						></path>
-						<path
-							d="M112.848356,81.4819556 L69.3973333,91.7418667"
-							id="Shape"
-							stroke="#B48EAD"
-						></path>
-						<path
-							d="M86.1795556,110.902756 L48.1998222,87.4332444"
-							id="Shape"
-							stroke="#BF616A"
-						></path>
-						<path
-							d="M46.5187556,112.848356 L36.2574222,69.3973333"
-							id="Shape"
-							stroke="#D08770"
-						></path>
-					</g>
-				</g>
-			</svg>
-		</div>
-	</body>
+    <div id="save-container">
+      <svg
+        id="save"
+        class="obturateur"
+        width="132px"
+        height="132px"
+        viewBox="0 0 132 132"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+      >
+        <g
+          id="Page-1"
+          stroke="none"
+          stroke-width="1"
+          fill="none"
+          fill-rule="evenodd"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <g id="obturateur" transform="translate(2.000000, 2.000000)" stroke-width="3">
+            <circle id="Oval" stroke="#4C566A" cx="64" cy="64" r="64"></circle>
+            <circle id="Oval" stroke="#4C566A" cx="64" cy="64" r="60.9706667"></circle>
+            <circle id="Oval" stroke="#4C566A" cx="64" cy="64" r="51.8734222"></circle>
+            <circle id="Oval" stroke="#D8DEE9" cx="64" cy="64" r="28.2595556"></circle>
+            <path
+              d="M17.0965333,86.1788444 L40.5667556,48.1998222"
+              id="Shape"
+              stroke="#EBCB8B"
+            ></path>
+            <path
+              d="M15.1509333,46.5180444 L58.6026667,36.2574222"
+              id="Shape"
+              stroke="#A3BE8C"
+            ></path>
+            <path
+              d="M41.8204444,17.0965333 L79.8001778,40.5660444"
+              id="Shape"
+              stroke="#8FBCBB"
+            ></path>
+            <path
+              d="M81.4819556,15.1502222 L91.7425778,58.6019556"
+              id="Shape"
+              stroke="#88C0D0"
+            ></path>
+            <path
+              d="M110.902756,41.8197333 L87.4332444,79.8001778"
+              id="Shape"
+              stroke="#81A1C1"
+            ></path>
+            <path
+              d="M112.848356,81.4819556 L69.3973333,91.7418667"
+              id="Shape"
+              stroke="#B48EAD"
+            ></path>
+            <path
+              d="M86.1795556,110.902756 L48.1998222,87.4332444"
+              id="Shape"
+              stroke="#BF616A"
+            ></path>
+            <path
+              d="M46.5187556,112.848356 L36.2574222,69.3973333"
+              id="Shape"
+              stroke="#D08770"
+            ></path>
+          </g>
+        </g>
+      </svg>
+    </div>
+  </body>
 </html>

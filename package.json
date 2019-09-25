@@ -23,7 +23,7 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "format": "prettier --write \"**/*.{js,jsx,md,json,css,prettierrc,eslintrc}\""
+    "format": "prettier --write \"**/*.{js,jsx,md,json,css,prettierrc,eslintrc,html}\""
   },
   "devDependencies": {
     "eslint": "^6.4.0",
