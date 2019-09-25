@@ -28,7 +28,6 @@ module.exports.activate = context => {
         vscode.commands.executeCommand('editor.action.clipboardCopyAction');
         panel.postMessage({ type: 'update', ...getConfig() });
       };
-      update();
 
       const selectionHandler = vscode.window.onDidChangeTextEditorSelection(e => {
         if (!e.selections[0] || e.selections[0].isEmpty) return;
