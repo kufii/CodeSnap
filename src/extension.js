@@ -8,6 +8,10 @@ const stripJsonComments = require('strip-json-comments');
 
 const readFile = promisify(fs.readFile);
 
+const memo = (fn, cache = {}) => x => cache[x] || (cache[x] = fn(x));
+
+const stripTrailingJsonCommas = json => json.replace(/,(?!\s*?[\{\[\"\'\w])/g, '');
+
 const readHtml = async htmlPath => {
 	const html = await readFile(htmlPath, 'utf-8');
 	return html.replace(/script src="([^"]*)"/g, (_, src) => {
@@ -24,7 +28,7 @@ const defaultThemeLineColors = {
 	'Default High Contrast': '#FFFFFF'
 };
 
-const getColorsForTheme = async themeName => {
+const getColorsForTheme = memo(async themeName => {
 	const colors = new Map();
 
 	let currentThemePath;
@@ -45,7 +49,7 @@ const getColorsForTheme = async themeName => {
 		const themePath = themePaths.pop();
 		let theme = await readFile(themePath, 'utf-8');
 		if (theme) {
-			theme = JSON.parse(stripJsonComments(theme));
+			theme = JSON.parse(stripTrailingJsonCommas(stripJsonComments(theme)));
 			if (theme.include) {
 				themePaths.push(path.join(path.dirname(themePath), theme.include));
 			}
@@ -57,7 +61,7 @@ const getColorsForTheme = async themeName => {
 		}
 	}
 	return colors;
-};
+});
 
 const getConfig = async () => {
 	const editorSettings = vscode.workspace.getConfiguration('editor', null);
@@ -73,8 +77,6 @@ const getConfig = async () => {
 		colors &&
 		(colors.get('editorLineNumber.foreground') ||
 			colors.get('editorLineNumber.activeForeground'));
-
-	console.log(theme, lineNumberColor);
 
 	return { fontFamily, enableLigatures, lineNumberColor };
 };
