@@ -64,14 +64,13 @@
       #snippet > div {
         display: flex;
       }
-      #snippet > div::before {
+      #snippet.has-line-numbers > div::before {
         counter-increment: line-number;
         content: counter(line-number);
         text-align: right;
         color: var(--vscode-editorLineNumber-foreground);
-        align-self: center;
-        padding-right: 18px;
-        width: calc(var(--vscode-editor-font-size) * var(--line-number-width) * 1px);
+        margin-right: 18px;
+        width: var(--line-number-width);
       }
       #snippet > div > div:last-child {
         flex: 1;
@@ -105,6 +104,11 @@
       }
       .obturateur:not(.filling) path {
         opacity: 0.5;
+      }
+      .size-test {
+        font-family: var(--vscode-editor-font-family) !important;
+        font-size: calc(var(--vscode-editor-font-size) * 1px) !important;
+        display: inline-block;
       }
     </style>
   </head>
