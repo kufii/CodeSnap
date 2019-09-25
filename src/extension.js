@@ -19,7 +19,46 @@ const getConfig = () => {
 	const editorSettings = vscode.workspace.getConfiguration('editor', null);
 	const fontFamily = editorSettings.get('fontFamily', 'monospace');
 	const enableLigatures = editorSettings.get('fontLigatures', false);
-	return { fontFamily, enableLigatures };
+
+	const theme = vscode.workspace.getConfiguration('workbench').get('colorTheme');
+	const colors = theme && getColorsForTheme(theme);
+	const lineNumberColor = colors && colors.get('editorLineNumber.foreground');
+
+	return { fontFamily, enableLigatures, lineNumberColor };
+};
+
+const getColorsForTheme = themeName => {
+	const colors = new Map();
+	let currentThemePath;
+	for (const extension of vscode.extensions.all) {
+		const themes =
+			extension.packageJSON.contributes && extension.packageJSON.contributes.themes;
+		const currentTheme = themes && themes.find(theme => theme.label === themeName);
+		if (currentTheme) {
+			currentThemePath = path.join(extension.extensionPath, currentTheme.path);
+			break;
+		}
+	}
+	const themePaths = [];
+	if (currentThemePath) {
+		themePaths.push(currentThemePath);
+	}
+	while (themePaths.length > 0) {
+		const themePath = themePaths.pop();
+		const theme = require(themePath); // eslint-disable-line
+		console.log(themePath, theme);
+		if (theme) {
+			if (theme.include) {
+				themePaths.push(path.join(path.dirname(themePath), theme.include));
+			}
+			if (theme.colors) {
+				Object.entries(theme.colors).forEach(
+					([key, value]) => !colors.has(key) && colors.set(key, value)
+				);
+			}
+		}
+	}
+	return colors;
 };
 
 module.exports.activate = context => {
