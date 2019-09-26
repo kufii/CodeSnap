@@ -14,8 +14,11 @@ const getConfig = () => {
 
   const showWindowControls = extensionSettings.get('showWindowControls', true);
   const showLineNumbers = extensionSettings.get('showLineNumbers', true);
+  const realLineNumbers = extensionSettings.get('realLineNumbers', false);
+  const selection = editor && editor.selection;
+  const startLine = realLineNumbers ? (selection ? selection.start.line : 0) : 0;
 
-  return { enableLigatures, tabSize, showWindowControls, showLineNumbers };
+  return { enableLigatures, tabSize, showWindowControls, showLineNumbers, startLine };
 };
 
 module.exports.activate = context => {

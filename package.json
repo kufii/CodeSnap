@@ -35,6 +35,12 @@
           "type": "boolean",
           "default": true,
           "description": "Display line numbers"
+        },
+        "codesnap.realLineNumbers": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": false,
+          "description": "Start from the selection's line number instead of 1"
         }
       }
     }
