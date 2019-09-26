@@ -33,12 +33,12 @@ body {
   padding: 18px;
   background-color: var(--vscode-editor-background);
 }
-#navbar {
+#navbar:not([hidden]) {
   display: flex;
   overflow: hidden;
+  margin-bottom: 15px;
 }
 #snippet {
-  padding-top: 15px;
   max-width: 100%;
   white-space: pre-wrap;
   word-break: break-all;

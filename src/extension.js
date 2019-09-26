@@ -6,12 +6,15 @@ const { readHtml, isEqual } = require('./util');
 
 const getConfig = () => {
   const editorSettings = vscode.workspace.getConfiguration('editor', null);
+  const extensionSettings = vscode.workspace.getConfiguration('codesnap', null);
 
   const enableLigatures = editorSettings.get('fontLigatures', false);
   const editor = vscode.window.activeTextEditor;
   const tabSize = editor ? editor.options.tabSize : editorSettings.get('tabSize', 4);
 
-  return { enableLigatures, tabSize };
+  const showWindowControls = extensionSettings.get('showWindowControls', true);
+
+  return { enableLigatures, tabSize, showWindowControls };
 };
 
 module.exports.activate = context => {

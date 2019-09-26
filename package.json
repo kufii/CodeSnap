@@ -19,7 +19,19 @@
         "command": "codesnap.start",
         "title": "CodeSnap 📸"
       }
-    ]
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "CodeSnap",
+      "properties": {
+        "codesnap.showWindowControls": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": true,
+          "description": "Display OS X style window controls"
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",

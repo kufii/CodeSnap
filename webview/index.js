@@ -2,6 +2,7 @@ const $ = (q, c = document) => c.querySelector(q);
 const $$ = (q, c = document) => Array.from(c.querySelectorAll(q));
 
 const snippetNode = $('#snippet');
+const navbarNode = $('#navbar');
 
 const regIndent = /^\s+/;
 
@@ -50,14 +51,18 @@ document.addEventListener('paste', e => {
   snippetNode.innerHTML = snippetNode.firstElementChild.innerHTML;
   stripInitialIndent(snippetNode);
   addLineNumbers(snippetNode);
+  console.log(document.body.innerHTML);
 });
 
 window.addEventListener('message', e => {
   if (e.data.type === 'update') {
-    const { enableLigatures, tabSize, enableLineNumbers = true } = e.data;
+    const { enableLigatures, tabSize, showWindowControls, enableLineNumbers = true } = e.data;
+
     snippetNode.style.fontVariantLigatures = enableLigatures ? 'normal' : 'none';
     snippetNode.style.tabSize = tabSize;
+    navbarNode.hidden = !showWindowControls;
     snippetNode.classList[enableLineNumbers ? 'add' : 'remove']('has-line-numbers');
+
     document.execCommand('paste');
   }
 });
