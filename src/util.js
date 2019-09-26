@@ -1,6 +1,6 @@
 'use strict';
 
-const { readFile } = require('fs').promises;
+const { readFile, writeFile } = require('fs').promises;
 const path = require('path');
 
 const readHtml = async htmlPath => {
@@ -20,4 +20,4 @@ const isEqual = (a, b) => {
   return true;
 };
 
-module.exports = { readHtml, isEqual };
+module.exports = { readHtml, isEqual, writeFile };

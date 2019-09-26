@@ -2,7 +2,7 @@
 
 const vscode = require('vscode');
 const path = require('path');
-const { readHtml, isEqual } = require('./util');
+const { readHtml, isEqual, writeFile } = require('./util');
 
 const getConfig = () => {
   const editorSettings = vscode.workspace.getConfiguration('editor', null);
@@ -42,8 +42,14 @@ module.exports.activate = context => {
         'codesnap',
         'CodeSnap 📸',
         vscode.ViewColumn.Two,
-        { enableScripts: true }
+        { enableScripts: true, localResourceRoots: [vscode.Uri.file(context.extensionPath)] }
       );
+      panel.webview.onDidReceiveMessage(async ({ type, data }) => {
+        if (type === 'save') {
+          const uri = await vscode.window.showSaveDialog({ filters: { Images: ['png'] } });
+          if (uri) writeFile(uri.fsPath, Buffer.from(data, 'base64'));
+        }
+      });
       panel.webview.html = html;
 
       const update = () => {

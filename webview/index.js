@@ -1,12 +1,16 @@
+const vscode = acquireVsCodeApi();
+
 const $ = (q, c = document) => c.querySelector(q);
 const $$ = (q, c = document) => Array.from(c.querySelectorAll(q));
 
+const snippetContainerNode = $('#snippet-container');
 const snippetNode = $('#snippet');
 const navbarNode = $('#navbar');
+const btnSave = $('#save');
 
 const regIndent = /^\s+/;
 
-let initialLineNumber;
+let config;
 
 const setVar = (key, value, node = document.body) => node.style.setProperty('--' + key, value);
 
@@ -19,15 +23,22 @@ const calcTextWidth = text => {
   return width + 1 + 'px';
 };
 
-const addLineNumbers = node => {
+const setupLines = node => {
   $$(':scope > br', node).forEach(row => (row.outerHTML = '<div>&nbsp;</div>'));
   const rows = $$(':scope > div', node);
-  setVar('initial-line-number', initialLineNumber, node);
-  setVar('line-number-width', calcTextWidth(rows.length + initialLineNumber), node);
-  rows.forEach(row => {
-    const div = document.createElement('div');
-    row.replaceWith(div);
-    div.appendChild(row);
+  setVar('line-number-width', calcTextWidth(rows.length + config.startLine));
+  rows.forEach((row, idx) => {
+    const newRow = document.createElement('div');
+    newRow.classList.add('line');
+    row.replaceWith(newRow);
+    if (config.showLineNumbers) {
+      const lineNum = document.createElement('div');
+      lineNum.classList.add('line-number');
+      lineNum.textContent = idx + 1 + config.startLine;
+      newRow.appendChild(lineNum);
+    }
+    row.classList.add('line-code');
+    newRow.appendChild(row);
   });
 };
 
@@ -51,26 +62,32 @@ const getClipboardHtml = clip => {
   return `<div>${text}</div>`;
 };
 
+btnSave.addEventListener('click', async e => {
+  const url = await domtoimage.toPng(snippetContainerNode);
+  vscode.postMessage({ type: 'save', data: url.slice(url.indexOf(',') + 1) });
+});
+
 document.addEventListener('paste', e => {
   snippetNode.innerHTML = getClipboardHtml(e.clipboardData);
-  snippetNode.style.lineHeight = snippetNode.firstElementChild.style.lineHeight;
-  snippetNode.innerHTML = snippetNode.firstElementChild.innerHTML;
+  const code = $('div', snippetNode);
+  snippetNode.style.lineHeight = code.style.lineHeight;
+  snippetNode.innerHTML = code.innerHTML;
   stripInitialIndent(snippetNode);
-  addLineNumbers(snippetNode);
+  setupLines(snippetNode);
 });
 
 window.addEventListener('message', e => {
   if (e.data.type === 'update') {
+    config = e.data;
+
     const {
       enableLigatures,
       tabSize,
       backgroundColor,
       boxShadow,
       containerPadding,
-      showWindowControls,
-      showLineNumbers,
-      startLine
-    } = e.data;
+      showWindowControls
+    } = config;
 
     setVar('ligatures', enableLigatures ? 'normal' : 'none');
     setVar('tab-size', tabSize);
@@ -79,8 +96,6 @@ window.addEventListener('message', e => {
     setVar('container-padding', containerPadding);
 
     navbarNode.hidden = !showWindowControls;
-    snippetNode.classList[showLineNumbers ? 'add' : 'remove']('has-line-numbers');
-    initialLineNumber = startLine;
 
     document.execCommand('paste');
   }

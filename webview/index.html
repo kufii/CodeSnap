@@ -9,8 +9,9 @@
       content="img-src vscode-resource: data: https:; script-src vscode-resource:; style-src 'unsafe-inline' vscode-resource:;"
     />
     <title>CodeSnap 📸</title>
-    <script src="./index.js" type="module" defer></script>
     <link rel="stylesheet" href="./style.css" />
+    <script src="../node_modules/dom-to-image/dist/dom-to-image.min.js" async></script>
+    <script src="./index.js" type="module"></script>
   </head>
   <body>
     <div id="snippet-container">
