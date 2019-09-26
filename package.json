@@ -30,6 +30,12 @@
           "default": "#abb8c3",
           "description": "The background color of the container"
         },
+        "codesnap.boxShadow": {
+          "scope": "resource",
+          "type": "string",
+          "default": "rgba(0, 0, 0, 0.3) 0px 15px 30px",
+          "description": "The CSS box-shadow for the snippet"
+        },
         "codesnap.showWindowControls": {
           "scope": "resource",
           "type": "boolean",

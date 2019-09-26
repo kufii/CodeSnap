@@ -13,6 +13,7 @@ const getConfig = () => {
   const tabSize = editor ? editor.options.tabSize : editorSettings.get('tabSize', 4);
 
   const backgroundColor = extensionSettings.get('backgroundColor', '#abb8c3');
+  const boxShadow = extensionSettings.get('boxShadow', 'rgba(0, 0, 0, 0.3) 0px 15px 30px');
   const showWindowControls = extensionSettings.get('showWindowControls', true);
   const showLineNumbers = extensionSettings.get('showLineNumbers', true);
   const realLineNumbers = extensionSettings.get('realLineNumbers', false);
@@ -23,6 +24,7 @@ const getConfig = () => {
     enableLigatures,
     tabSize,
     backgroundColor,
+    boxShadow,
     showWindowControls,
     showLineNumbers,
     startLine

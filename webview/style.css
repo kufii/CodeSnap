@@ -1,8 +1,9 @@
 html {
-  --initial-line-number: 0;
-  --container-background-color: #abb8c3;
   --ligatures: normal;
   --tab-size: 4;
+  --initial-line-number: 0;
+  --container-background-color: #abb8c3;
+  --box-shadow: rgba(0, 0, 0, 0.3) 0px 15px 30px;
   box-sizing: border-box;
   padding-top: 32px;
 }
@@ -32,7 +33,7 @@ body {
   min-width: 100px;
   max-width: 100%;
   border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.3) 0px 15px 30px;
+  box-shadow: var(--box-shadow);
   overflow: hidden;
   resize: horizontal;
   padding: 18px;

@@ -56,7 +56,6 @@ document.addEventListener('paste', e => {
   snippetNode.innerHTML = snippetNode.firstElementChild.innerHTML;
   stripInitialIndent(snippetNode);
   addLineNumbers(snippetNode);
-  console.log(document.body.innerHTML);
 });
 
 window.addEventListener('message', e => {
@@ -65,6 +64,7 @@ window.addEventListener('message', e => {
       enableLigatures,
       tabSize,
       backgroundColor,
+      boxShadow,
       showWindowControls,
       showLineNumbers,
       startLine
@@ -73,6 +73,9 @@ window.addEventListener('message', e => {
     setVar('ligatures', enableLigatures ? 'normal' : 'none');
     setVar('tab-size', tabSize);
     setVar('container-background-color', backgroundColor);
+    setVar('box-shadow', boxShadow);
+
+    console.log(boxShadow);
 
     navbarNode.hidden = !showWindowControls;
     snippetNode.classList[showLineNumbers ? 'add' : 'remove']('has-line-numbers');
