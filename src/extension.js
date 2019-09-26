@@ -6,8 +6,10 @@ const { readHtml, isEqual } = require('./util');
 
 const getConfig = () => {
   const editorSettings = vscode.workspace.getConfiguration('editor', null);
+
   const enableLigatures = editorSettings.get('fontLigatures', false);
-  const tabSize = editorSettings.get('tabSize', 4);
+  const editor = vscode.window.activeTextEditor;
+  const tabSize = editor ? editor.options.tabSize : editorSettings.get('tabSize', 4);
 
   return { enableLigatures, tabSize };
 };
