@@ -14,6 +14,7 @@ const getConfig = () => {
 
   const backgroundColor = extensionSettings.get('backgroundColor', '#abb8c3');
   const boxShadow = extensionSettings.get('boxShadow', 'rgba(0, 0, 0, 0.3) 0px 15px 30px');
+  const containerPadding = extensionSettings.get('containerPadding', '3em');
   const showWindowControls = extensionSettings.get('showWindowControls', true);
   const showLineNumbers = extensionSettings.get('showLineNumbers', true);
   const realLineNumbers = extensionSettings.get('realLineNumbers', false);
@@ -25,6 +26,7 @@ const getConfig = () => {
     tabSize,
     backgroundColor,
     boxShadow,
+    containerPadding,
     showWindowControls,
     showLineNumbers,
     startLine

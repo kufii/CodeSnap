@@ -66,6 +66,7 @@ window.addEventListener('message', e => {
       tabSize,
       backgroundColor,
       boxShadow,
+      containerPadding,
       showWindowControls,
       showLineNumbers,
       startLine
@@ -75,6 +76,7 @@ window.addEventListener('message', e => {
     setVar('tab-size', tabSize);
     setVar('container-background-color', backgroundColor);
     setVar('box-shadow', boxShadow);
+    setVar('container-padding', containerPadding);
 
     navbarNode.hidden = !showWindowControls;
     snippetNode.classList[showLineNumbers ? 'add' : 'remove']('has-line-numbers');

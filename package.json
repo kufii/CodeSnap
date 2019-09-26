@@ -28,13 +28,19 @@
           "scope": "resource",
           "type": "string",
           "default": "#abb8c3",
-          "description": "The background color of the container"
+          "description": "The background color of the snippet's container"
         },
         "codesnap.boxShadow": {
           "scope": "resource",
           "type": "string",
           "default": "rgba(0, 0, 0, 0.3) 0px 15px 30px",
           "description": "The CSS box-shadow for the snippet"
+        },
+        "codesnap.containerPadding": {
+          "scope": "resource",
+          "type": "string",
+          "default": "3em",
+          "description": "The padding for the snippet's container"
         },
         "codesnap.showWindowControls": {
           "scope": "resource",

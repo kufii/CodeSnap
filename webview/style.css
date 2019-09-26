@@ -4,6 +4,7 @@ html {
   --initial-line-number: 0;
   --container-background-color: #abb8c3;
   --box-shadow: rgba(0, 0, 0, 0.3) 0px 15px 30px;
+  --container-padding: 3em;
   box-sizing: border-box;
   padding-top: 32px;
 }
@@ -21,7 +22,7 @@ body {
   margin: auto;
   overflow: hidden;
   border-radius: 4px;
-  padding: 3em;
+  padding: var(--container-padding);
   background-color: var(--container-background-color);
 }
 #window {
