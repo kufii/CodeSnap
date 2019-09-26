@@ -1,5 +1,8 @@
 html {
   --initial-line-number: 0;
+  --container-background-color: #abb8c3;
+  --ligatures: normal;
+  --tab-size: 4;
   box-sizing: border-box;
   padding-top: 32px;
 }
@@ -7,6 +10,8 @@ body {
   display: flex;
   flex-flow: column;
   align-items: center;
+  font-variant-ligatures: var(--ligatures);
+  tab-size: var(--tab-size);
 }
 #snippet-container {
   display: flex;
@@ -16,7 +21,7 @@ body {
   overflow: hidden;
   border-radius: 4px;
   padding: 3em;
-  background-color: #abb8c3;
+  background-color: var(--container-background-color);
 }
 #window {
   position: relative;

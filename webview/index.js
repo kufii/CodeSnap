@@ -8,6 +8,8 @@ const regIndent = /^\s+/;
 
 let initialLineNumber;
 
+const setVar = (key, value, node = document.body) => node.style.setProperty('--' + key, value);
+
 const calcTextWidth = text => {
   const div = document.body.appendChild(document.createElement('div'));
   div.classList.add('size-test');
@@ -20,8 +22,8 @@ const calcTextWidth = text => {
 const addLineNumbers = node => {
   $$(':scope > br', node).forEach(row => (row.outerHTML = '<div>&nbsp;</div>'));
   const rows = $$(':scope > div', node);
-  node.style.setProperty('--initial-line-number', initialLineNumber);
-  node.style.setProperty('--line-number-width', calcTextWidth(rows.length + initialLineNumber));
+  setVar('initial-line-number', initialLineNumber, node);
+  setVar('line-number-width', calcTextWidth(rows.length + initialLineNumber), node);
   rows.forEach(row => {
     const div = document.createElement('div');
     row.replaceWith(div);
@@ -59,10 +61,19 @@ document.addEventListener('paste', e => {
 
 window.addEventListener('message', e => {
   if (e.data.type === 'update') {
-    const { enableLigatures, tabSize, showWindowControls, showLineNumbers, startLine } = e.data;
+    const {
+      enableLigatures,
+      tabSize,
+      backgroundColor,
+      showWindowControls,
+      showLineNumbers,
+      startLine
+    } = e.data;
 
-    snippetNode.style.fontVariantLigatures = enableLigatures ? 'normal' : 'none';
-    snippetNode.style.tabSize = tabSize;
+    setVar('ligatures', enableLigatures ? 'normal' : 'none');
+    setVar('tab-size', tabSize);
+    setVar('container-background-color', backgroundColor);
+
     navbarNode.hidden = !showWindowControls;
     snippetNode.classList[showLineNumbers ? 'add' : 'remove']('has-line-numbers');
     initialLineNumber = startLine;

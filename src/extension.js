@@ -12,13 +12,21 @@ const getConfig = () => {
   const editor = vscode.window.activeTextEditor;
   const tabSize = editor ? editor.options.tabSize : editorSettings.get('tabSize', 4);
 
+  const backgroundColor = extensionSettings.get('backgroundColor', '#abb8c3');
   const showWindowControls = extensionSettings.get('showWindowControls', true);
   const showLineNumbers = extensionSettings.get('showLineNumbers', true);
   const realLineNumbers = extensionSettings.get('realLineNumbers', false);
   const selection = editor && editor.selection;
   const startLine = realLineNumbers ? (selection ? selection.start.line : 0) : 0;
 
-  return { enableLigatures, tabSize, showWindowControls, showLineNumbers, startLine };
+  return {
+    enableLigatures,
+    tabSize,
+    backgroundColor,
+    showWindowControls,
+    showLineNumbers,
+    startLine
+  };
 };
 
 module.exports.activate = context => {

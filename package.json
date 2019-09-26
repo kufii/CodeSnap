@@ -24,6 +24,12 @@
       "type": "object",
       "title": "CodeSnap",
       "properties": {
+        "codesnap.backgroundColor": {
+          "scope": "resource",
+          "type": "string",
+          "default": "#abb8c3",
+          "description": "The background color of the container"
+        },
         "codesnap.showWindowControls": {
           "scope": "resource",
           "type": "boolean",
