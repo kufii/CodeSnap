@@ -2,7 +2,7 @@
 
 const vscode = require('vscode');
 const path = require('path');
-const { readHtml } = require('./util');
+const { readHtml, isEqual } = require('./util');
 
 const getConfig = () => {
   const editorSettings = vscode.workspace.getConfiguration('editor', null);
@@ -32,11 +32,7 @@ module.exports.activate = context => {
 
       const editor = vscode.window.activeTextEditor;
       const selection = editor && editor.selection;
-      if (
-        selection &&
-        (selection.start.line !== selection.end.line ||
-          selection.start.character !== selection.end.character)
-      ) {
+      if (selection && !isEqual(selection.start, selection.end)) {
         update();
       }
 

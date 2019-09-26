@@ -1,0 +1,101 @@
+html {
+  --initial-line-number: 0;
+  box-sizing: border-box;
+  padding-top: 32px;
+}
+body {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+#snippet-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 4px;
+  padding: 3em;
+  background-color: #abb8c3;
+}
+#window {
+  position: relative;
+  display: flex;
+  max-width: calc(100% - 128px);
+  align-items: flex-start;
+  flex-direction: column;
+  min-width: 100px;
+  max-width: 100%;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 15px 30px;
+  overflow: hidden;
+  resize: horizontal;
+  padding: 18px;
+  background-color: var(--vscode-editor-background);
+}
+#navbar {
+  display: flex;
+  overflow: hidden;
+}
+#snippet {
+  padding-top: 15px;
+  max-width: 100%;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--vscode-editor-foreground);
+  background-color: var(--vscode-editor-background);
+  font-family: var(--vscode-editor-font-family);
+  font-size: calc(var(--vscode-editor-font-size) * 1px);
+  counter-reset: line-number var(--initial-line-number);
+}
+#snippet > div {
+  display: flex;
+}
+#snippet.has-line-numbers > div::before {
+  counter-increment: line-number;
+  content: counter(line-number);
+  text-align: right;
+  color: var(--vscode-editorLineNumber-foreground);
+  margin-right: 18px;
+  width: var(--line-number-width);
+}
+#snippet > div > div {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+#save-container {
+  margin-top: 40px;
+  margin-bottom: 60px;
+  text-align: center;
+}
+.dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.red {
+  background-color: #ff5f5a;
+}
+.yellow {
+  background-color: #ffbe2e;
+}
+.green {
+  background-color: #2aca44;
+}
+.obturateur {
+  width: 64px;
+  height: 64px;
+}
+.obturateur * {
+  transition: stroke 0.4s;
+}
+.obturateur:not(.filling) path {
+  opacity: 0.5;
+}
+.size-test {
+  font-family: var(--vscode-editor-font-family) !important;
+  font-size: calc(var(--vscode-editor-font-size) * 1px) !important;
+  display: inline-block;
+}
