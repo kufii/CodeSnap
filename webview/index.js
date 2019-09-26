@@ -53,6 +53,7 @@ const getClipboardHtml = clip => {
 
 document.addEventListener('paste', e => {
   snippetNode.innerHTML = getClipboardHtml(e.clipboardData);
+  snippetNode.style.lineHeight = snippetNode.firstElementChild.style.lineHeight;
   snippetNode.innerHTML = snippetNode.firstElementChild.innerHTML;
   stripInitialIndent(snippetNode);
   addLineNumbers(snippetNode);
