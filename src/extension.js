@@ -13,8 +13,9 @@ const getConfig = () => {
   const tabSize = editor ? editor.options.tabSize : editorSettings.get('tabSize', 4);
 
   const showWindowControls = extensionSettings.get('showWindowControls', true);
+  const showLineNumbers = extensionSettings.get('showLineNumbers', true);
 
-  return { enableLigatures, tabSize, showWindowControls };
+  return { enableLigatures, tabSize, showWindowControls, showLineNumbers };
 };
 
 module.exports.activate = context => {

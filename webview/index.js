@@ -56,12 +56,12 @@ document.addEventListener('paste', e => {
 
 window.addEventListener('message', e => {
   if (e.data.type === 'update') {
-    const { enableLigatures, tabSize, showWindowControls, enableLineNumbers = true } = e.data;
+    const { enableLigatures, tabSize, showWindowControls, showLineNumbers } = e.data;
 
     snippetNode.style.fontVariantLigatures = enableLigatures ? 'normal' : 'none';
     snippetNode.style.tabSize = tabSize;
     navbarNode.hidden = !showWindowControls;
-    snippetNode.classList[enableLineNumbers ? 'add' : 'remove']('has-line-numbers');
+    snippetNode.classList[showLineNumbers ? 'add' : 'remove']('has-line-numbers');
 
     document.execCommand('paste');
   }
