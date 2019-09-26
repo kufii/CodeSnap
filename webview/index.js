@@ -75,8 +75,6 @@ window.addEventListener('message', e => {
     setVar('container-background-color', backgroundColor);
     setVar('box-shadow', boxShadow);
 
-    console.log(boxShadow);
-
     navbarNode.hidden = !showWindowControls;
     snippetNode.classList[showLineNumbers ? 'add' : 'remove']('has-line-numbers');
     initialLineNumber = startLine;
