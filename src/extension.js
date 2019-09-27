@@ -22,6 +22,7 @@ const getConfig = () => {
   const realLineNumbers = extensionSettings.get('realLineNumbers', false);
   const selection = editor && editor.selection;
   const startLine = realLineNumbers ? (selection ? selection.start.line : 0) : 0;
+  const transparentBackground = extensionSettings.get('transparentBackground', false);
 
   return {
     enableLigatures,
@@ -32,7 +33,8 @@ const getConfig = () => {
     roundedCorners,
     showWindowControls,
     showLineNumbers,
-    startLine
+    startLine,
+    transparentBackground
   };
 };
 

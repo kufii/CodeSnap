@@ -64,9 +64,13 @@ const getClipboardHtml = clip => {
 
 btnSave.addEventListener('click', async () => {
   windowNode.style.resize = 'none';
+  if (config.transparentBackground) setVar('container-background-color', 'transparent');
+
   const url = await domtoimage.toPng(snippetContainerNode, { bgColor: 'transparent' });
   vscode.postMessage({ type: 'save', data: url.slice(url.indexOf(',') + 1) });
+
   windowNode.style.resize = 'horizontal';
+  setVar('container-background-color', config.backgroundColor);
 });
 
 document.addEventListener('paste', e => {
