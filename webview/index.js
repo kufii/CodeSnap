@@ -64,7 +64,7 @@ const getClipboardHtml = clip => {
 
 btnSave.addEventListener('click', async () => {
   windowNode.style.resize = 'none';
-  if (config.transparentBackground || config.target === 'snippet') {
+  if (config.transparentBackground || config.target === 'window') {
     setVar('container-background-color', 'transparent');
   }
 

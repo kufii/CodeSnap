@@ -77,7 +77,7 @@
           "type": "string",
           "enum": [
             "container",
-            "snippet"
+            "window"
           ],
           "default": "container",
           "description": "Take the shot with or without the container"
