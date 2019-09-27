@@ -1,39 +1,33 @@
 html {
   --ligatures: normal;
   --tab-size: 4;
-  --initial-line-number: 0;
   --container-background-color: #abb8c3;
   --box-shadow: rgba(0, 0, 0, 0.3) 0px 15px 30px;
   --container-padding: 3em;
   box-sizing: border-box;
-  padding-top: 32px;
 }
 body {
+  padding-top: 32px;
   display: flex;
   flex-flow: column;
   align-items: center;
   font-variant-ligatures: var(--ligatures);
   tab-size: var(--tab-size);
+  user-select: none;
 }
 #snippet-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: auto;
   overflow: hidden;
   border-radius: 4px;
   padding: var(--container-padding);
   background-color: var(--container-background-color);
 }
 #window {
-  position: relative;
   display: flex;
-  max-width: calc(100% - 128px);
-  align-items: flex-start;
   flex-direction: column;
-  min-width: 100px;
-  max-width: 100%;
-  border-radius: 5px;
+  border-radius: 4px;
   box-shadow: var(--box-shadow);
   overflow: hidden;
   resize: horizontal;
@@ -53,20 +47,17 @@ body {
   background-color: var(--vscode-editor-background);
   font-family: var(--vscode-editor-font-family);
   font-size: calc(var(--vscode-editor-font-size) * 1px);
-  counter-reset: line-number var(--initial-line-number);
 }
-#snippet > div {
+.line {
   display: flex;
 }
-#snippet.has-line-numbers > div::before {
-  counter-increment: line-number;
-  content: counter(line-number);
+.line-number {
   text-align: right;
   color: var(--vscode-editorLineNumber-foreground);
   margin-right: 18px;
   width: var(--line-number-width);
 }
-#snippet > div > div {
+.line-code {
   flex: 1;
   display: flex;
   flex-wrap: wrap;
