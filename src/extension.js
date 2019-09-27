@@ -3,7 +3,7 @@
 const vscode = require('vscode');
 const path = require('path');
 const { homedir } = require('os');
-const { readHtml, isEqual, writeFile } = require('./util');
+const { readHtml, writeFile } = require('./util');
 
 const getConfig = () => {
   const editorSettings = vscode.workspace.getConfiguration('editor', null);
@@ -72,7 +72,7 @@ module.exports.activate = context => {
 
       const editor = vscode.window.activeTextEditor;
       const selection = editor && editor.selection;
-      if (selection && !isEqual(selection.start, selection.end)) {
+      if (selection && !selection.isEmpty) {
         update();
       }
 

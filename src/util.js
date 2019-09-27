@@ -11,13 +11,4 @@ const readHtml = async htmlPath => {
   );
 };
 
-const isEqual = (a, b) => {
-  if (a === b) return true;
-  if (a == null || b == null) return a == null && b == null;
-  const ak = Object.keys(a);
-  if (ak.length !== Object.keys(b).length) return false;
-  for (const k of ak) if (a[k] !== b[k]) return false;
-  return true;
-};
-
-module.exports = { readHtml, isEqual, writeFile };
+module.exports = { readHtml, writeFile };
