@@ -3,8 +3,5 @@
   "env": {
     "browser": false,
     "node": true
-  },
-  "globals": {
-    "domtoimage": true
   }
 }

@@ -62,7 +62,7 @@ const getClipboardHtml = clip => {
   return `<div>${text}</div>`;
 };
 
-btnSave.addEventListener('click', async e => {
+btnSave.addEventListener('click', async () => {
   const url = await domtoimage.toPng(snippetContainerNode);
   vscode.postMessage({ type: 'save', data: url.slice(url.indexOf(',') + 1) });
 });

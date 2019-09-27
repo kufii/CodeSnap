@@ -8,6 +8,7 @@
     "sourceType": "module"
   },
   "globals": {
-    "acquireVsCodeApi": true
+    "acquireVsCodeApi": true,
+    "domtoimage": true
   }
 }
