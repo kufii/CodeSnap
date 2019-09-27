@@ -71,6 +71,16 @@
           "type": "boolean",
           "default": false,
           "description": "Use a transparent background when taking the screenshot"
+        },
+        "codesnap.target": {
+          "scope": "resource",
+          "type": "string",
+          "enum": [
+            "container",
+            "snippet"
+          ],
+          "default": "container",
+          "description": "Take the shot with or without the container"
         }
       }
     }

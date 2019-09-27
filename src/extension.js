@@ -23,6 +23,7 @@ const getConfig = () => {
   const selection = editor && editor.selection;
   const startLine = realLineNumbers ? (selection ? selection.start.line : 0) : 0;
   const transparentBackground = extensionSettings.get('transparentBackground', false);
+  const target = extensionSettings.get('target', 'container');
 
   return {
     enableLigatures,
@@ -34,7 +35,8 @@ const getConfig = () => {
     showWindowControls,
     showLineNumbers,
     startLine,
-    transparentBackground
+    transparentBackground,
+    target
   };
 };
 
