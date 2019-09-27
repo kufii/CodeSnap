@@ -69,7 +69,6 @@ module.exports.activate = context => {
       });
 
       const update = () => {
-        console.log('update');
         vscode.commands.executeCommand('editor.action.clipboardCopyAction');
         panel.postMessage({ type: 'update', ...getConfig() });
       };
