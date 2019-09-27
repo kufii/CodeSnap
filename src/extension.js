@@ -64,7 +64,12 @@ module.exports.activate = context => {
           lastUsedImageUri = uri;
           if (uri) writeFile(uri.fsPath, Buffer.from(data, 'base64'));
         } else if (type === 'copy') {
-          copyImg(Buffer.from(data, 'base64'));
+          const [err, stdout, stderr] = await copyImg(Buffer.from(data, 'base64'));
+          if (err) {
+            if (err.code === 127 && process.platform === 'linux')
+              vscode.window.showErrorMessage('CodeSnap: xclip is not installed');
+            else vscode.window.showErrorMessage('CodeSnap: ' + stdout + stderr);
+          }
         }
       });
 

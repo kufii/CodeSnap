@@ -3,14 +3,14 @@
 const tempWrite = require('temp-write');
 const { exec } = require('child_process');
 
-const copyLinux = file => exec(`xclip -sel clip -t image/png -i "${file}"`, { cwd: __dirname });
+const run = cmd => new Promise(done => exec(cmd, { cwd: __dirname }, (...args) => done(args)));
+
+const copyLinux = file => run(`xclip -sel clip -t image/png -i "${file}"`);
 
 const copyOsx = file => null; // eslint-disable-line
 
 const copyWindows = file =>
-  exec(`powershell.exe -ExecutionPolicy Bypass ./scripts/copy-image.ps1 "${file}"`, {
-    cwd: __dirname
-  });
+  run(`powershell.exe -ExecutionPolicy Bypass ./scripts/copy-image.ps1 "${file}"`);
 
 module.exports.copyImg = img => {
   const file = tempWrite.sync(img, 'code.png');
