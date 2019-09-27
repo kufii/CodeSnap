@@ -3,20 +3,20 @@
 const tempWrite = require('temp-write');
 const { exec } = require('child_process');
 
-const copyLinux = img => null; // eslint-disable-line
+const copyLinux = file => exec(`xclip -sel clip -t image/png -i "${file}"`, { cwd: __dirname });
 
-const copyOsx = img => null; // eslint-disable-line
+const copyOsx = file => null; // eslint-disable-line
 
-const copyWindows = img => {
-  const file = tempWrite.sync(img, 'code.png');
+const copyWindows = file =>
   exec(`powershell.exe -ExecutionPolicy Bypass ./scripts/copy-image.ps1 "${file}"`, {
     cwd: __dirname
   });
-};
 
-module.exports.copyImg = img =>
-  process.platform === 'win32'
-    ? copyWindows(img)
+module.exports.copyImg = img => {
+  const file = tempWrite.sync(img, 'code.png');
+  return process.platform === 'win32'
+    ? copyWindows(file)
     : process.platform === 'darwin'
-    ? copyOsx(img)
-    : copyLinux(img);
+    ? copyOsx(file)
+    : copyLinux(file);
+};
