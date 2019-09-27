@@ -2,6 +2,7 @@
 
 const vscode = require('vscode');
 const path = require('path');
+const { homedir } = require('os');
 const { readHtml, isEqual, writeFile } = require('./util');
 
 const getConfig = () => {
@@ -44,13 +45,19 @@ module.exports.activate = context => {
         vscode.ViewColumn.Two,
         { enableScripts: true, localResourceRoots: [vscode.Uri.file(context.extensionPath)] }
       );
+      panel.webview.html = html;
+
+      let lastUsedImageUri = vscode.Uri.file(path.resolve(homedir(), 'Desktop/code.png'));
       panel.webview.onDidReceiveMessage(async ({ type, data }) => {
         if (type === 'save') {
-          const uri = await vscode.window.showSaveDialog({ filters: { Images: ['png'] } });
+          const uri = await vscode.window.showSaveDialog({
+            filters: { Images: ['png'] },
+            defaultUri: lastUsedImageUri
+          });
+          lastUsedImageUri = uri;
           if (uri) writeFile(uri.fsPath, Buffer.from(data, 'base64'));
         }
       });
-      panel.webview.html = html;
 
       const update = () => {
         vscode.commands.executeCommand('editor.action.clipboardCopyAction');

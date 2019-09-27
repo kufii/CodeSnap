@@ -20,7 +20,6 @@ body {
   justify-content: center;
   align-items: center;
   overflow: hidden;
-  border-radius: 4px;
   padding: var(--container-padding);
   background-color: var(--container-background-color);
 }

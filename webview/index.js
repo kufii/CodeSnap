@@ -4,11 +4,10 @@ const $ = (q, c = document) => c.querySelector(q);
 const $$ = (q, c = document) => Array.from(c.querySelectorAll(q));
 
 const snippetContainerNode = $('#snippet-container');
-const snippetNode = $('#snippet');
+const windowNode = $('#window');
 const navbarNode = $('#navbar');
+const snippetNode = $('#snippet');
 const btnSave = $('#save');
-
-const regIndent = /^\s+/;
 
 let config;
 
@@ -43,6 +42,7 @@ const setupLines = node => {
 };
 
 const stripInitialIndent = node => {
+  const regIndent = /^\s+/;
   const initialSpans = $$(':scope > div > span:first-child', node);
   if (initialSpans.some(span => !regIndent.test(span.textContent))) return;
   const minIndent = Math.min(
@@ -63,8 +63,10 @@ const getClipboardHtml = clip => {
 };
 
 btnSave.addEventListener('click', async () => {
-  const url = await domtoimage.toPng(snippetContainerNode);
+  windowNode.style.resize = 'none';
+  const url = await domtoimage.toPng(snippetContainerNode, { bgColor: 'transparent' });
   vscode.postMessage({ type: 'save', data: url.slice(url.indexOf(',') + 1) });
+  windowNode.style.resize = 'horizontal';
 });
 
 document.addEventListener('paste', e => {
