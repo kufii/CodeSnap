@@ -97,6 +97,7 @@
     "prettier": "^1.18.2"
   },
   "dependencies": {
-    "dom-to-image": "^2.6.0"
+    "dom-to-image": "^2.6.0",
+    "temp-write": "^4.0.0"
   }
 }

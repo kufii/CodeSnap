@@ -62,7 +62,7 @@ const getClipboardHtml = clip => {
   return `<div>${text}</div>`;
 };
 
-btnSave.addEventListener('click', async () => {
+const takeSnap = async (type = 'save') => {
   windowNode.style.resize = 'none';
   if (config.transparentBackground || config.target === 'window') {
     setVar('container-background-color', 'transparent');
@@ -72,11 +72,14 @@ btnSave.addEventListener('click', async () => {
     config.target === 'container' ? snippetContainerNode : windowNode,
     { bgColor: 'transparent' }
   );
-  vscode.postMessage({ type: 'save', data: url.slice(url.indexOf(',') + 1) });
+  vscode.postMessage({ type, data: url.slice(url.indexOf(',') + 1) });
 
   windowNode.style.resize = 'horizontal';
   setVar('container-background-color', config.backgroundColor);
-});
+};
+
+btnSave.addEventListener('click', () => takeSnap());
+document.addEventListener('copy', () => takeSnap('copy'));
 
 document.addEventListener('paste', e => {
   snippetNode.innerHTML = getClipboardHtml(e.clipboardData);

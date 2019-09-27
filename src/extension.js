@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const path = require('path');
 const { homedir } = require('os');
 const { readHtml, writeFile } = require('./util');
+const { copyImg } = require('./img-clipboard');
 
 const getConfig = () => {
   const editorSettings = vscode.workspace.getConfiguration('editor', null);
@@ -62,10 +63,13 @@ module.exports.activate = context => {
           });
           lastUsedImageUri = uri;
           if (uri) writeFile(uri.fsPath, Buffer.from(data, 'base64'));
+        } else if (type === 'copy') {
+          copyImg(Buffer.from(data, 'base64'));
         }
       });
 
       const update = () => {
+        console.log('update');
         vscode.commands.executeCommand('editor.action.clipboardCopyAction');
         panel.postMessage({ type: 'update', ...getConfig() });
       };
