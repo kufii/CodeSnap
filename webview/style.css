@@ -2,8 +2,9 @@ html {
   --ligatures: normal;
   --tab-size: 4;
   --container-background-color: #abb8c3;
-  --box-shadow: rgba(0, 0, 0, 0.3) 0px 15px 30px;
+  --box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
   --container-padding: 3em;
+  --window-border-radius: 4px;
   box-sizing: border-box;
 }
 body {
@@ -26,7 +27,7 @@ body {
 #window {
   display: flex;
   flex-direction: column;
-  border-radius: 4px;
+  border-radius: var(--window-border-radius);
   box-shadow: var(--box-shadow);
   overflow: hidden;
   resize: horizontal;

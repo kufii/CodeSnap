@@ -1,80 +1,86 @@
 {
-  "name": "codesnap",
-  "displayName": "CodeSnap",
-  "description": "Take beautiful screenshots of your code",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.38.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onCommand:codesnap.start"
-  ],
-  "main": "./src/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "codesnap.start",
-        "title": "CodeSnap 📸"
-      }
-    ],
-    "configuration": {
-      "type": "object",
-      "title": "CodeSnap",
-      "properties": {
-        "codesnap.backgroundColor": {
-          "scope": "resource",
-          "type": "string",
-          "default": "#abb8c3",
-          "description": "The background color of the snippet's container"
-        },
-        "codesnap.boxShadow": {
-          "scope": "resource",
-          "type": "string",
-          "default": "rgba(0, 0, 0, 0.3) 0px 15px 30px",
-          "description": "The CSS box-shadow for the snippet"
-        },
-        "codesnap.containerPadding": {
-          "scope": "resource",
-          "type": "string",
-          "default": "3em",
-          "description": "The padding for the snippet's container"
-        },
-        "codesnap.showWindowControls": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "description": "Display OS X style window controls"
-        },
-        "codesnap.showLineNumbers": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": true,
-          "description": "Display line numbers"
-        },
-        "codesnap.realLineNumbers": {
-          "scope": "resource",
-          "type": "boolean",
-          "default": false,
-          "description": "Start from the selection's line number instead of 1"
-        }
-      }
-    }
-  },
-  "scripts": {
-    "lint": "eslint .",
-    "format": "prettier --write \"**/*.{js,jsx,md,json,css,prettierrc,eslintrc,html}\""
-  },
-  "devDependencies": {
-    "eslint": "^6.4.0",
-    "eslint-config-adpyke-es6": "^1.4.12",
-    "eslint-config-prettier": "^6.3.0",
-    "glob": "^7.1.4",
-    "prettier": "^1.18.2"
-  },
-  "dependencies": {
-    "dom-to-image": "^2.6.0"
-  }
+	"name": "codesnap",
+	"displayName": "CodeSnap",
+	"description": "Take beautiful screenshots of your code",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.38.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:codesnap.start"
+	],
+	"main": "./src/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "codesnap.start",
+				"title": "CodeSnap 📸"
+			}
+		],
+		"configuration": {
+			"type": "object",
+			"title": "CodeSnap",
+			"properties": {
+				"codesnap.backgroundColor": {
+					"scope": "resource",
+					"type": "string",
+					"default": "#abb8c3",
+					"description": "The background color of the snippet's container"
+				},
+				"codesnap.boxShadow": {
+					"scope": "resource",
+					"type": "string",
+					"default": "rgba(0, 0, 0, 0.55) 0px 20px 68px",
+					"description": "The CSS box-shadow for the snippet"
+				},
+				"codesnap.containerPadding": {
+					"scope": "resource",
+					"type": "string",
+					"default": "3em",
+					"description": "The padding for the snippet's container"
+				},
+				"codesnap.roundedCorners": {
+					"scope": "resource",
+					"type": "boolean",
+					"default": true,
+					"description": "Use rounded corners for the window"
+				},
+				"codesnap.showWindowControls": {
+					"scope": "resource",
+					"type": "boolean",
+					"default": true,
+					"description": "Display OS X style window controls"
+				},
+				"codesnap.showLineNumbers": {
+					"scope": "resource",
+					"type": "boolean",
+					"default": true,
+					"description": "Display line numbers"
+				},
+				"codesnap.realLineNumbers": {
+					"scope": "resource",
+					"type": "boolean",
+					"default": false,
+					"description": "Start from the selection's line number instead of 1"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"lint": "eslint .",
+		"format": "prettier --write \"**/*.{js,jsx,md,json,css,prettierrc,eslintrc,html}\""
+	},
+	"devDependencies": {
+		"eslint": "^6.4.0",
+		"eslint-config-adpyke-es6": "^1.4.12",
+		"eslint-config-prettier": "^6.3.0",
+		"glob": "^7.1.4",
+		"prettier": "^1.18.2"
+	},
+	"dependencies": {
+		"dom-to-image": "^2.6.0"
+	}
 }
