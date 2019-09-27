@@ -3,7 +3,7 @@
 const tempWrite = require('temp-write');
 const { exec } = require('child_process');
 
-const copyLinux = file => exec(`xclip -sel clip -t image/png -i "${file}"`);
+const copyLinux = file => exec(`xclip -sel clip -t image/png -i "${file}"`, { cwd: __dirname });
 
 const copyOsx = file => null; // eslint-disable-line
 
