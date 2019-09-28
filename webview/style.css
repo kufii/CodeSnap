@@ -47,6 +47,7 @@ body {
   background-color: var(--vscode-editor-background);
   font-family: var(--vscode-editor-font-family);
   font-size: calc(var(--vscode-editor-font-size) * 1px);
+  font-weight: var(--vscode-editor-font-weight);
 }
 .line {
   display: flex;
