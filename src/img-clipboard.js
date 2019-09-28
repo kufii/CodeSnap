@@ -7,7 +7,7 @@ const run = cmd => new Promise(done => exec(cmd, { cwd: __dirname }, (...args) =
 
 const copyLinux = file => run(`xclip -sel clip -t image/png -i "${file}"`);
 
-const copyOsx = file => run(`./scripts/osx-copy-image "${file}"`); // eslint-disable-line
+const copyOsx = file => run(`./scripts/osx-copy-image "${file}"`);
 
 const copyWindows = file =>
   run(`powershell.exe -ExecutionPolicy Bypass ./scripts/copy-image.ps1 "${file}"`);
