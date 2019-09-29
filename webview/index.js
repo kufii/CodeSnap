@@ -24,18 +24,22 @@ const calcTextWidth = text => {
 
 const setupLines = node => {
   $$(':scope > br', node).forEach(row => (row.outerHTML = '<div>&nbsp;</div>'));
+
   const rows = $$(':scope > div', node);
   setVar('line-number-width', calcTextWidth(rows.length + config.startLine));
+
   rows.forEach((row, idx) => {
     const newRow = document.createElement('div');
     newRow.classList.add('line');
     row.replaceWith(newRow);
+
     if (config.showLineNumbers) {
       const lineNum = document.createElement('div');
       lineNum.classList.add('line-number');
       lineNum.textContent = idx + 1 + config.startLine;
       newRow.appendChild(lineNum);
     }
+
     row.classList.add('line-code');
     newRow.appendChild(row);
   });
@@ -62,6 +66,15 @@ const getClipboardHtml = clip => {
   return `<div>${text}</div>`;
 };
 
+const pasteCode = clipboard => {
+  snippetNode.innerHTML = getClipboardHtml(clipboard);
+  const code = $('div', snippetNode);
+  snippetNode.style.lineHeight = code.style.lineHeight;
+  snippetNode.innerHTML = code.innerHTML;
+  stripInitialIndent(snippetNode);
+  setupLines(snippetNode);
+};
+
 const takeSnap = async (type = 'save') => {
   windowNode.style.resize = 'none';
   if (config.transparentBackground || config.target === 'window') {
@@ -79,16 +92,10 @@ const takeSnap = async (type = 'save') => {
 };
 
 btnSave.addEventListener('click', () => takeSnap());
+
 document.addEventListener('copy', () => takeSnap('copy'));
 
-document.addEventListener('paste', e => {
-  snippetNode.innerHTML = getClipboardHtml(e.clipboardData);
-  const code = $('div', snippetNode);
-  snippetNode.style.lineHeight = code.style.lineHeight;
-  snippetNode.innerHTML = code.innerHTML;
-  stripInitialIndent(snippetNode);
-  setupLines(snippetNode);
-});
+document.addEventListener('paste', e => pasteCode(e.clipboardData));
 
 window.addEventListener('message', e => {
   if (e.data.type === 'update') {
