@@ -41,54 +41,62 @@ const getConfig = () => {
   };
 };
 
+const createPanel = async context => {
+  const html = await readHtml(path.resolve(context.extensionPath, 'webview/index.html'));
+
+  const panel = vscode.window.createWebviewPanel('codesnap', 'CodeSnap 📸', vscode.ViewColumn.Two, {
+    enableScripts: true,
+    localResourceRoots: [vscode.Uri.file(context.extensionPath)]
+  });
+  panel.webview.html = html;
+
+  return panel;
+};
+
+let lastUsedImageUri = vscode.Uri.file(path.resolve(homedir(), 'Desktop/code.png'));
+const saveImage = async data => {
+  const uri = await vscode.window.showSaveDialog({
+    filters: { Images: ['png'] },
+    defaultUri: lastUsedImageUri
+  });
+  lastUsedImageUri = uri;
+  uri && writeFile(uri.fsPath, Buffer.from(data, 'base64'));
+};
+
+const copyImage = async data => {
+  const [err, stdout, stderr] = await copyImg(Buffer.from(data, 'base64'));
+  if (!err) return;
+  if (err.code === 127 && process.platform === 'linux')
+    vscode.window.showErrorMessage('CodeSnap: xclip is not installed');
+  else vscode.window.showErrorMessage('CodeSnap: ' + stdout + stderr);
+};
+
+const hasOneSelection = selections =>
+  selections && selections.length === 1 && !selections[0].isEmpty;
+
+const runCommand = async context => {
+  const panel = await createPanel(context);
+
+  const update = () => {
+    vscode.commands.executeCommand('editor.action.clipboardCopyAction');
+    panel.postMessage({ type: 'update', ...getConfig() });
+  };
+
+  panel.webview.onDidReceiveMessage(({ type, data }) =>
+    type === 'save' ? saveImage(data) : copyImage(data)
+  );
+
+  const selectionHandler = vscode.window.onDidChangeTextEditorSelection(
+    e => hasOneSelection(e.selections) && update()
+  );
+  panel.onDidDispose(() => selectionHandler.dispose());
+
+  const editor = vscode.window.activeTextEditor;
+  if (editor && hasOneSelection(editor.selections)) update();
+};
+
 module.exports.activate = context => {
   context.subscriptions.push(
-    vscode.commands.registerCommand('codesnap.start', async () => {
-      const html = await readHtml(path.resolve(context.extensionPath, 'webview/index.html'));
-
-      const panel = vscode.window.createWebviewPanel(
-        'codesnap',
-        'CodeSnap 📸',
-        vscode.ViewColumn.Two,
-        { enableScripts: true, localResourceRoots: [vscode.Uri.file(context.extensionPath)] }
-      );
-      panel.webview.html = html;
-
-      let lastUsedImageUri = vscode.Uri.file(path.resolve(homedir(), 'Desktop/code.png'));
-      panel.webview.onDidReceiveMessage(async ({ type, data }) => {
-        if (type === 'save') {
-          const uri = await vscode.window.showSaveDialog({
-            filters: { Images: ['png'] },
-            defaultUri: lastUsedImageUri
-          });
-          lastUsedImageUri = uri;
-          if (uri) writeFile(uri.fsPath, Buffer.from(data, 'base64'));
-        } else if (type === 'copy') {
-          const [err, stdout, stderr] = await copyImg(Buffer.from(data, 'base64'));
-          if (err) {
-            if (err.code === 127 && process.platform === 'linux')
-              vscode.window.showErrorMessage('CodeSnap: xclip is not installed');
-            else vscode.window.showErrorMessage('CodeSnap: ' + stdout + stderr);
-          }
-        }
-      });
-
-      const update = () => {
-        vscode.commands.executeCommand('editor.action.clipboardCopyAction');
-        panel.postMessage({ type: 'update', ...getConfig() });
-      };
-
-      const hasOneSelection = selections =>
-        selections && selections.length === 1 && !selections[0].isEmpty;
-
-      const selectionHandler = vscode.window.onDidChangeTextEditorSelection(
-        e => hasOneSelection(e.selections) && update()
-      );
-      panel.onDidDispose(() => selectionHandler.dispose());
-
-      const editor = vscode.window.activeTextEditor;
-      const selections = editor && editor.selections;
-      hasOneSelection(selections) && update();
-    })
+    vscode.commands.registerCommand('codesnap.start', () => runCommand(context))
   );
 };
