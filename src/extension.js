@@ -78,17 +78,17 @@ module.exports.activate = context => {
         panel.postMessage({ type: 'update', ...getConfig() });
       };
 
-      const editor = vscode.window.activeTextEditor;
-      const selection = editor && editor.selection;
-      if (selection && !selection.isEmpty) {
-        update();
-      }
+      const hasOneSelection = selections =>
+        selections && selections.length === 1 && !selections[0].isEmpty;
 
-      const selectionHandler = vscode.window.onDidChangeTextEditorSelection(e => {
-        if (!e.selections[0] || e.selections[0].isEmpty) return;
-        update();
-      });
+      const selectionHandler = vscode.window.onDidChangeTextEditorSelection(
+        e => hasOneSelection(e.selections) && update()
+      );
       panel.onDidDispose(() => selectionHandler.dispose());
+
+      const editor = vscode.window.activeTextEditor;
+      const selections = editor && editor.selections;
+      hasOneSelection(selections) && update();
     })
   );
 };

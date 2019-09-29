@@ -31,6 +31,7 @@ body {
   box-shadow: var(--box-shadow);
   overflow: hidden;
   resize: horizontal;
+  min-width: 100px;
   padding: 18px;
   background-color: var(--vscode-editor-background);
 }
