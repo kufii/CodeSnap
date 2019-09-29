@@ -65,11 +65,10 @@ const saveImage = async data => {
 
 const copyImage = async data => {
   const [err, stdout, stderr] = await copyImg(Buffer.from(data, 'base64'));
-  if (err) {
-    if (err.code === 127 && process.platform === 'linux')
-      vscode.window.showErrorMessage('CodeSnap: xclip is not installed');
-    else vscode.window.showErrorMessage('CodeSnap: ' + stdout + stderr);
-  }
+  if (!err) return;
+  if (err.code === 127 && process.platform === 'linux')
+    vscode.window.showErrorMessage('CodeSnap: xclip is not installed');
+  else vscode.window.showErrorMessage('CodeSnap: ' + stdout + stderr);
 };
 
 const hasOneSelection = selections =>
@@ -93,8 +92,7 @@ const runCommand = async context => {
   panel.onDidDispose(() => selectionHandler.dispose());
 
   const editor = vscode.window.activeTextEditor;
-  const selections = editor && editor.selections;
-  hasOneSelection(selections) && update();
+  if (editor && hasOneSelection(editor.selections)) update();
 };
 
 module.exports.activate = context => {
