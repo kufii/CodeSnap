@@ -3,13 +3,8 @@
 const vscode = require('vscode');
 const path = require('path');
 const { homedir } = require('os');
-const { readHtml, writeFile } = require('./util');
+const { readHtml, writeFile, getSettings } = require('./util');
 const { copyImg } = require('./img-clipboard');
-
-const getSettings = (group, keys) => {
-  const settings = vscode.workspace.getConfiguration(group, null);
-  return keys.reduce((acc, k) => ((acc[k] = settings.get(k)), acc), {});
-};
 
 const getConfig = () => {
   const editorSettings = getSettings('editor', ['fontLigatures', 'tabSize']);
@@ -32,8 +27,8 @@ const getConfig = () => {
   const startLine = extensionSettings.realLineNumbers ? (selection ? selection.start.line : 0) : 0;
 
   return {
-    ...extensionSettings,
     ...editorSettings,
+    ...extensionSettings,
     startLine
   };
 };
