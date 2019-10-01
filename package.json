@@ -103,6 +103,6 @@
   },
   "dependencies": {
     "dom-to-image": "^2.6.0",
-    "img-clipboard": "^1.0.1"
+    "img-clipboard": "^1.0.2"
   }
 }
