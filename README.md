@@ -15,7 +15,7 @@ TODO: add gif of usage
 
 TODO: add a bunch of screenshots here
 
-## configuration
+## Configuration
 
 CodeSnap is highly configurable. Here's a list of settings you can change to tune the way your screenshots look:
 
