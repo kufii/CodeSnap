@@ -2,12 +2,15 @@ const vscode = acquireVsCodeApi();
 
 const $ = (q, c = document) => c.querySelector(q);
 const $$ = (q, c = document) => Array.from(c.querySelectorAll(q));
+const once = (elem, evt) => new Promise(done => elem.addEventListener(evt, done, { once: true }));
+const redraw = node => node.clientHeight;
 
 const snippetContainerNode = $('#snippet-container');
 const windowNode = $('#window');
 const navbarNode = $('#navbar');
 const snippetNode = $('#snippet');
 const btnSave = $('#save');
+const flashFx = $('#flash-fx');
 
 let config;
 
@@ -20,6 +23,15 @@ const calcTextWidth = text => {
   const width = div.clientWidth;
   div.remove();
   return width + 1 + 'px';
+};
+
+const cameraFlashAnimation = async () => {
+  flashFx.style.display = 'block';
+  redraw(flashFx);
+  flashFx.style.transform = 'scale(0)';
+  await once(flashFx, 'transitionend');
+  flashFx.style.display = 'none';
+  flashFx.style.transform = '';
 };
 
 const setupLines = node => {
@@ -85,6 +97,9 @@ const takeSnap = async (type = 'save') => {
     config.target === 'container' ? snippetContainerNode : windowNode,
     { bgColor: 'transparent' }
   );
+
+  await cameraFlashAnimation();
+
   vscode.postMessage({ type, data: url.slice(url.indexOf(',') + 1) });
 
   windowNode.style.resize = 'horizontal';
