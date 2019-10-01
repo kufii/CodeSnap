@@ -99,3 +99,14 @@ body {
   font-size: calc(var(--vscode-editor-font-size) * 1px) !important;
   display: inline-block;
 }
+#flash-fx {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  transition: transform 200ms ease;
+  transform: scale(1);
+}
