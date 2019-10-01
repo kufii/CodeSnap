@@ -28,10 +28,10 @@ const calcTextWidth = text => {
 const cameraFlashAnimation = async () => {
   flashFx.style.display = 'block';
   redraw(flashFx);
-  flashFx.style.transform = 'scale(0)';
+  flashFx.style.opacity = '0';
   await once(flashFx, 'transitionend');
   flashFx.style.display = 'none';
-  flashFx.style.transform = '';
+  flashFx.style.opacity = '1';
 };
 
 const setupLines = node => {

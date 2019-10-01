@@ -107,6 +107,6 @@ body {
   left: 0;
   right: 0;
   background: white;
-  transition: transform 200ms ease;
-  transform: scale(1);
+  transition: opacity 200ms ease;
+  opacity: 1;
 }
