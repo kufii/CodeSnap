@@ -3,41 +3,33 @@
 const vscode = require('vscode');
 const path = require('path');
 const { homedir } = require('os');
-const { readHtml, writeFile } = require('./util');
+const { readHtml, writeFile, getSettings } = require('./util');
 const { copyImg } = require('./img-clipboard');
 
 const getConfig = () => {
-  const editorSettings = vscode.workspace.getConfiguration('editor', null);
-  const extensionSettings = vscode.workspace.getConfiguration('codesnap', null);
-
-  const enableLigatures = editorSettings.get('fontLigatures', false);
+  const editorSettings = getSettings('editor', ['fontLigatures', 'tabSize']);
   const editor = vscode.window.activeTextEditor;
-  const tabSize = editor ? editor.options.tabSize : editorSettings.get('tabSize', 4);
+  if (editor) editorSettings.tabSize = editor.options.tabSize;
 
-  const backgroundColor = extensionSettings.get('backgroundColor', '#abb8c3');
-  const boxShadow = extensionSettings.get('boxShadow', 'rgba(0, 0, 0, 0.55) 0px 20px 68px');
-  const containerPadding = extensionSettings.get('containerPadding', '3em');
-  const roundedCorners = extensionSettings.get('roundedCorners', true);
-  const showWindowControls = extensionSettings.get('showWindowControls', true);
-  const showLineNumbers = extensionSettings.get('showLineNumbers', true);
-  const realLineNumbers = extensionSettings.get('realLineNumbers', false);
+  const extensionSettings = getSettings('codesnap', [
+    'backgroundColor',
+    'boxShadow',
+    'containerPadding',
+    'roundedCorners',
+    'showWindowControls',
+    'showLineNumbers',
+    'realLineNumbers',
+    'transparentBackground',
+    'target'
+  ]);
+
   const selection = editor && editor.selection;
-  const startLine = realLineNumbers ? (selection ? selection.start.line : 0) : 0;
-  const transparentBackground = extensionSettings.get('transparentBackground', false);
-  const target = extensionSettings.get('target', 'container');
+  const startLine = extensionSettings.realLineNumbers ? (selection ? selection.start.line : 0) : 0;
 
   return {
-    enableLigatures,
-    tabSize,
-    backgroundColor,
-    boxShadow,
-    containerPadding,
-    roundedCorners,
-    showWindowControls,
-    showLineNumbers,
-    startLine,
-    transparentBackground,
-    target
+    ...editorSettings,
+    ...extensionSettings,
+    startLine
   };
 };
 
