@@ -102,7 +102,7 @@ window.addEventListener('message', e => {
     config = e.data;
 
     const {
-      enableLigatures,
+      fontLigatures,
       tabSize,
       backgroundColor,
       boxShadow,
@@ -111,7 +111,7 @@ window.addEventListener('message', e => {
       showWindowControls
     } = config;
 
-    setVar('ligatures', enableLigatures ? 'normal' : 'none');
+    setVar('ligatures', fontLigatures ? 'normal' : 'none');
     setVar('tab-size', tabSize);
     setVar('container-background-color', backgroundColor);
     setVar('box-shadow', boxShadow);

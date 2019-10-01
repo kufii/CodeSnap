@@ -18,6 +18,4 @@ const getSettings = (group, keys) => {
   return keys.reduce((acc, k) => ((acc[k] = settings.get(k)), acc), {});
 };
 
-const isWayland = () => process.env.XDG_SESSION_TYPE === 'wayland';
-
-module.exports = { readHtml, writeFile, getSettings, isWayland };
+module.exports = { readHtml, writeFile, getSettings };

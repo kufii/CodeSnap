@@ -3,8 +3,8 @@
 const vscode = require('vscode');
 const path = require('path');
 const { homedir } = require('os');
-const { readHtml, writeFile, getSettings, isWayland } = require('./util');
-const { copyImg } = require('./img-clipboard');
+const { readHtml, writeFile, getSettings } = require('./util');
+const { copyImg, isWayland, ErrorCodes } = require('img-clipboard');
 
 const getConfig = () => {
   const editorSettings = getSettings('editor', ['fontLigatures', 'tabSize']);
@@ -58,7 +58,7 @@ const saveImage = async data => {
 const copyImage = async data => {
   const [err, stdout, stderr] = await copyImg(Buffer.from(data, 'base64'));
   if (!err) return;
-  if (err.code === 127 && process.platform === 'linux')
+  if (err.code === ErrorCodes.COMMAND_NOT_FOUND && process.platform === 'linux')
     vscode.window.showErrorMessage(
       `CodeSnap: ${isWayland() ? 'wl-clipboard' : 'xclip'} is not installed`
     );
