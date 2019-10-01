@@ -2,6 +2,41 @@
 
 Take beautiful screenshots of your code in VS Code.
 
+TODO: add gif of usage
+
+## Features
+
+- Quickly save screenshots of your code
+- Copy screenshots to your clipboard
+- Show line numbers
+- Many other configuration Options
+
+## Examples
+
+TODO: add a bunch of screenshots here
+
+## configuration
+
+CodeSnap is highly configurable. Here's a list of settings you can change to tune the way your screenshots look:
+
+**`codesnap.backgroundColor`:** The background color of the snippet's container. Can be any valid CSS color.
+
+**`codesnap.boxShadow`:** The CSS box-shadow for the snippet. Can be any valid CSS box shadow.
+
+**`codesnap.containerPadding`:** The padding for the snippet's container. Can be any valid CSS padding.
+
+**`codesnap.roundedCorners`:** Boolean value to use rounded corners or square corners for the window.
+
+**`codesnap.showWindowControls`:** Boolean value to show or hide OS X style window buttons.
+
+**`codesnap.showLineNumbers`:** Boolean value to show or hide line numbers.
+
+**`codesnap.realLineNumbers`:** Boolean value to start from the real line number of the file instead of 1.
+
+**`codesnap.transparentBackground`:** Boolean value to use a transparent background when taking the screenshot.
+
+**`codesnap.target`:** Either `container` to take the screenshot with the container, or `window` to only take the window.
+
 ## Copy to Clipboard support in Linux
 
 In order for this feature to work in Linux you must install `xclip`.
@@ -17,3 +52,9 @@ pacman -S xclip
 ```
 
 If you're using [Wayland](https://wayland.freedesktop.org/) (rather than X) as your compositing window manager install [`wl-clipboard`](https://github.com/bugaevc/wl-clipboard) instead.
+
+## Acknowledgements
+
+The great [Polacode](https://github.com/octref/polacode), for the initial concept.
+
+[Carbon](https://carbon.now.sh/) for some design inspiration.
