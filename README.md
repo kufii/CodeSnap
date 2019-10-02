@@ -29,6 +29,8 @@ CodeSnap is highly configurable. Here's a list of settings you can change to tun
 
 **`codesnap.showWindowControls`:** Boolean value to show or hide OS X style window buttons.
 
+**`codesnap.showWindowTitle`:** Boolean value to show or hide window title `folder_name - file_name`.
+
 **`codesnap.showLineNumbers`:** Boolean value to show or hide line numbers.
 
 **`codesnap.realLineNumbers`:** Boolean value to start from the real line number of the file instead of 1.
