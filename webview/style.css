@@ -38,11 +38,16 @@ body {
 #navbar {
   overflow: hidden;
   margin-bottom: 15px;
-  display: flex;
-  justify-content: space-between;
+  text-align: center;
 }
 .navbar-controls {
   display: flex;
+  float: left;
+  margin-top: 2px;
+}
+#window-title {
+  /* width of window controls (and a bit) so they don't overlap */
+  margin: 0 80px;
 }
 #snippet {
   max-width: 100%;
