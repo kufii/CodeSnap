@@ -59,6 +59,12 @@
           "default": true,
           "description": "Display OS X style window controls"
         },
+        "codesnap.showWindowTitle": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": false,
+          "description": "Display window title with open folder / file name"
+        },
         "codesnap.showLineNumbers": {
           "scope": "resource",
           "type": "boolean",

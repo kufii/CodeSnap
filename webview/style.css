@@ -35,10 +35,19 @@ body {
   padding: 18px;
   background-color: var(--vscode-editor-background);
 }
-#navbar:not([hidden]) {
-  display: flex;
+#navbar {
   overflow: hidden;
   margin-bottom: 15px;
+  text-align: center;
+}
+.navbar-controls {
+  display: flex;
+  float: left;
+  margin-top: 2px;
+}
+#window-title {
+  /* width of window controls (and a bit) so they don't overlap */
+  margin: 0 80px;
 }
 #snippet {
   max-width: 100%;

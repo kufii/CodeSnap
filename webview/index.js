@@ -8,6 +8,7 @@ const redraw = node => node.clientHeight;
 const snippetContainerNode = $('#snippet-container');
 const windowNode = $('#window');
 const navbarNode = $('#navbar');
+const windowTitleNode = $('#window-title');
 const snippetNode = $('#snippet');
 const btnSave = $('#save');
 const flashFx = $('#flash-fx');
@@ -123,7 +124,8 @@ window.addEventListener('message', e => {
       boxShadow,
       containerPadding,
       roundedCorners,
-      showWindowControls
+      showWindowControls,
+      windowTitle
     } = config;
 
     setVar('ligatures', fontLigatures ? 'normal' : 'none');
@@ -134,6 +136,7 @@ window.addEventListener('message', e => {
     setVar('window-border-radius', roundedCorners ? '4px' : 0);
 
     navbarNode.hidden = !showWindowControls;
+    windowTitleNode.textContent = windowTitle;
 
     document.execCommand('paste');
   }

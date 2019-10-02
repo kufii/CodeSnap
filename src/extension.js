@@ -17,6 +17,7 @@ const getConfig = () => {
     'containerPadding',
     'roundedCorners',
     'showWindowControls',
+    'showWindowTitle',
     'showLineNumbers',
     'realLineNumbers',
     'transparentBackground',
@@ -26,10 +27,17 @@ const getConfig = () => {
   const selection = editor && editor.selection;
   const startLine = extensionSettings.realLineNumbers ? (selection ? selection.start.line : 0) : 0;
 
+  let windowTitle = '';
+  if (editor && extensionSettings.showWindowTitle) {
+    const activeFileName = editor.document.uri.path.split('/').pop();
+    windowTitle = `${vscode.workspace.name} - ${activeFileName}`;
+  }
+
   return {
     ...editorSettings,
     ...extensionSettings,
-    startLine
+    startLine,
+    windowTitle
   };
 };
 
