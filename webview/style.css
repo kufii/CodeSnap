@@ -94,11 +94,10 @@ body {
   background-color: #2aca44;
 }
 .shutter {
+  enable-background: new 0 0 28.3 28.3;
   width: 64px;
   height: 64px;
-}
-.shutter path {
-  opacity: 0.5;
+  cursor: pointer;
 }
 .size-test {
   font-family: var(--vscode-editor-font-family) !important;

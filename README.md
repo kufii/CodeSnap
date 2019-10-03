@@ -9,7 +9,7 @@ TODO: add gif of usage
 - Quickly save screenshots of your code
 - Copy screenshots to your clipboard
 - Show line numbers
-- Many other configuration Options
+- Many other configuration options
 
 ## Examples
 
