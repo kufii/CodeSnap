@@ -8,10 +8,18 @@
     "url": "https://github.com/kufii/CodeSnap"
   },
   "publisher": "adpyke",
+  "icon": "icon.png",
   "license": "MIT",
   "engines": {
     "vscode": "^1.38.0"
   },
+  "keywords": [
+    "screenshot",
+    "snippet",
+    "snap",
+    "clipboard",
+    "share"
+  ],
   "categories": [
     "Other"
   ],
