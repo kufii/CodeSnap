@@ -110,8 +110,6 @@ const takeSnap = async (type = 'save') => {
 
   vscode.postMessage({ type, data: url.slice(url.indexOf(',') + 1) });
 
-  await cameraFlashAnimation();
-
   windowNode.style.resize = 'horizontal';
   setVar('container-background-color', config.backgroundColor);
 };
@@ -122,9 +120,9 @@ document.addEventListener('copy', () => takeSnap('copy'));
 
 document.addEventListener('paste', e => pasteCode(e.clipboardData));
 
-window.addEventListener('message', e => {
-  if (e.data.type === 'update') {
-    config = e.data;
+window.addEventListener('message', ({ data }) => {
+  if (data.type === 'update') {
+    config = data;
 
     const {
       fontLigatures,
@@ -148,5 +146,7 @@ window.addEventListener('message', e => {
     windowTitleNode.textContent = windowTitle;
 
     document.execCommand('paste');
+  } else if (data.type === 'flash') {
+    cameraFlashAnimation();
   }
 });

@@ -84,9 +84,17 @@ const runCommand = async context => {
     panel.postMessage({ type: 'update', ...getConfig() });
   };
 
-  panel.webview.onDidReceiveMessage(({ type, data }) =>
-    type === 'save' ? saveImage(data) : copyImage(data)
-  );
+  const flash = () => panel.postMessage({ type: 'flash' });
+
+  panel.webview.onDidReceiveMessage(async ({ type, data }) => {
+    if (type === 'save') {
+      flash();
+      await saveImage(data);
+    } else if (type === 'copy') {
+      await copyImage(data);
+      flash();
+    }
+  });
 
   const selectionHandler = vscode.window.onDidChangeTextEditorSelection(
     e => hasOneSelection(e.selections) && update()
