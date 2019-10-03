@@ -1,19 +1,12 @@
 const vscode = acquireVsCodeApi();
 
 const $ = (q, c = document) => c.querySelector(q);
+
 const $$ = (q, c = document) => Array.from(c.querySelectorAll(q));
+
 const once = (elem, evt) => new Promise(done => elem.addEventListener(evt, done, { once: true }));
+
 const redraw = node => node.clientHeight;
-
-const snippetContainerNode = $('#snippet-container');
-const windowNode = $('#window');
-const navbarNode = $('#navbar');
-const windowTitleNode = $('#window-title');
-const snippetNode = $('#snippet');
-const btnSave = $('#save');
-const flashFx = $('#flash-fx');
-
-let config;
 
 const setVar = (key, value, node = document.body) => node.style.setProperty('--' + key, value);
 
@@ -25,6 +18,18 @@ const calcTextWidth = text => {
   div.remove();
   return width + 1 + 'px';
 };
+
+const snippetContainerNode = $('#snippet-container');
+const windowNode = $('#window');
+const navbarNode = $('#navbar');
+const windowTitleNode = $('#window-title');
+const snippetNode = $('#snippet');
+const btnSave = $('#save');
+const flashFx = $('#flash-fx');
+
+let config;
+
+const SNAP_SCALE = 2;
 
 const cameraFlashAnimation = async () => {
   flashFx.style.display = 'block';
@@ -94,14 +99,16 @@ const takeSnap = async (type = 'save') => {
     setVar('container-background-color', 'transparent');
   }
 
-  const url = await domtoimage.toPng(
-    config.target === 'container' ? snippetContainerNode : windowNode,
-    { bgColor: 'transparent' }
-  );
+  const target = config.target === 'container' ? snippetContainerNode : windowNode;
 
-  await cameraFlashAnimation();
+  const url = await domtoimage.toPng(target, {
+    bgColor: 'transparent',
+    scale: SNAP_SCALE
+  });
 
   vscode.postMessage({ type, data: url.slice(url.indexOf(',') + 1) });
+
+  await cameraFlashAnimation();
 
   windowNode.style.resize = 'horizontal';
   setVar('container-background-color', config.backgroundColor);
