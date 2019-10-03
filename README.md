@@ -1,8 +1,6 @@
 # CodeSnap
 
-Take beautiful screenshots of your code in VS Code.
-
-TODO: add gif of usage
+📸 Take beautiful screenshots of your code in VS Code!
 
 ## Features
 
