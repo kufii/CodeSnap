@@ -93,14 +93,11 @@ body {
 .green {
   background-color: #2aca44;
 }
-.obturateur {
+.shutter {
   width: 64px;
   height: 64px;
 }
-.obturateur * {
-  transition: stroke 0.4s;
-}
-.obturateur:not(.filling) path {
+.shutter path {
   opacity: 0.5;
 }
 .size-test {
