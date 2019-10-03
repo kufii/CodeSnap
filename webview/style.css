@@ -68,11 +68,6 @@ body {
   margin-right: 18px;
   width: var(--line-number-width);
 }
-.line-code {
-  flex: 1;
-  display: flex;
-  flex-wrap: wrap;
-}
 #save-container {
   margin-top: 40px;
   margin-bottom: 60px;
