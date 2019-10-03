@@ -12,7 +12,7 @@ body {
   display: flex;
   flex-flow: column;
   align-items: center;
-  font-variant-ligatures: var(--ligatures);
+  font-variant-ligatures: normal;
   tab-size: var(--tab-size);
   user-select: none;
 }
