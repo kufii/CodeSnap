@@ -4,6 +4,10 @@ All notable changes to the "codesnap" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.9]
+
+- Fixed issues when using language specific settings
+
 ## [1.0.8]
 
 - Fixed line number alignment on narrow screen
