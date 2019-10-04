@@ -11,6 +11,8 @@ const getConfig = () => {
   const editor = vscode.window.activeTextEditor;
   if (editor) editorSettings.tabSize = editor.options.tabSize;
 
+  console.log(editorSettings.fontLigatures);
+
   const extensionSettings = getSettings('codesnap', [
     'backgroundColor',
     'boxShadow',

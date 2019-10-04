@@ -15,7 +15,14 @@ const readHtml = async htmlPath => {
 
 const getSettings = (group, keys) => {
   const settings = vscode.workspace.getConfiguration(group, null);
-  return keys.reduce((acc, k) => ((acc[k] = settings.get(k)), acc), {});
+  const editor = vscode.window.activeTextEditor;
+  const language = editor && editor.document && editor.document.languageId;
+  const languageSettings = language && vscode.workspace.getConfiguration().get(`[${language}]`);
+  return keys.reduce((acc, k) => {
+    acc[k] = languageSettings && languageSettings[`${group}.${k}`];
+    if (acc[k] == null) acc[k] = settings.get(k);
+    return acc;
+  }, {});
 };
 
 module.exports = { readHtml, writeFile, getSettings };
