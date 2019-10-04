@@ -69,6 +69,7 @@ body {
   margin-right: 18px;
   width: var(--line-number-width);
   white-space: nowrap;
+  flex: none;
 }
 .line-code {
   display: flex;
