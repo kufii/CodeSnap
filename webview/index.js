@@ -59,8 +59,6 @@ const setupLines = node => {
     }
 
     row.classList.add('line-code');
-    // Hack for dom-to-image breaking when zoomed out
-    row.appendChild(document.createTextNode(' '));
     newRow.appendChild(row);
   });
 };

@@ -68,6 +68,14 @@ body {
   color: var(--vscode-editorLineNumber-foreground);
   margin-right: 18px;
   width: var(--line-number-width);
+  white-space: nowrap;
+}
+.line-code {
+  display: flex;
+  flex-wrap: wrap;
+}
+.line-code > span {
+  white-space: nowrap;
 }
 #save-container {
   margin-top: 40px;
