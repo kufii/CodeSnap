@@ -2,7 +2,7 @@
   "name": "codesnap",
   "displayName": "CodeSnap",
   "description": "Take beautiful screenshots of your code",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "repository": {
     "type": "git",
     "url": "https://github.com/kufii/CodeSnap"
