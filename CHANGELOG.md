@@ -4,6 +4,10 @@ All notable changes to the "codesnap" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.13]
+
+- Fixed font rendering issues with certain font settings
+
 ## [1.0.9]
 
 - Fixed issues when using language specific settings
