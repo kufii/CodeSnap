@@ -74,6 +74,8 @@ body {
 .line-code {
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
+  white-space: nowrap;
 }
 .line-code > span {
   white-space: nowrap;
