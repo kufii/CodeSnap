@@ -87,6 +87,7 @@ const getClipboardHtml = clip => {
 const pasteCode = clipboard => {
   snippetNode.innerHTML = getClipboardHtml(clipboard);
   const code = $('div', snippetNode);
+  snippetNode.style.fontSize = code.style.fontSize;
   snippetNode.style.lineHeight = code.style.lineHeight;
   snippetNode.innerHTML = code.innerHTML;
   stripInitialIndent(snippetNode);
