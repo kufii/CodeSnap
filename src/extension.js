@@ -106,8 +106,7 @@ const runCommand = async context => {
   if (editor && hasOneSelection(editor.selections)) update();
 };
 
-module.exports.activate = context => {
+module.exports.activate = context =>
   context.subscriptions.push(
     vscode.commands.registerCommand('codesnap.start', () => runCommand(context))
   );
-};

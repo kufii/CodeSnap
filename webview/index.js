@@ -118,9 +118,9 @@ document.addEventListener('copy', () => takeSnap('copy'));
 
 document.addEventListener('paste', e => pasteCode(e.clipboardData));
 
-window.addEventListener('message', ({ data }) => {
-  if (data.type === 'update') {
-    config = data;
+window.addEventListener('message', ({ data: { type, ...cfg } }) => {
+  if (type === 'update') {
+    config = cfg;
 
     const {
       fontLigatures,
@@ -144,7 +144,7 @@ window.addEventListener('message', ({ data }) => {
     windowTitleNode.textContent = windowTitle;
 
     document.execCommand('paste');
-  } else if (data.type === 'flash') {
+  } else if (type === 'flash') {
     cameraFlashAnimation();
   }
 });

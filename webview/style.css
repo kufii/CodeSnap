@@ -75,10 +75,6 @@ body {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  white-space: nowrap;
-}
-.line-code > span {
-  white-space: nowrap;
 }
 #save-container {
   margin-top: 40px;
