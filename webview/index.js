@@ -64,7 +64,7 @@ const setupLines = node => {
 };
 
 const stripInitialIndent = node => {
-  const regIndent = /^\s+/;
+  const regIndent = /^\s+/u;
   const initialSpans = $$(':scope > div > span:first-child', node);
   if (initialSpans.some(span => !regIndent.test(span.textContent))) return;
   const minIndent = Math.min(

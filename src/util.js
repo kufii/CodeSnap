@@ -6,9 +6,9 @@ const { readFile, writeFile } = require('fs').promises;
 
 const readHtml = async (htmlPath, panel) =>
   (await readFile(htmlPath, 'utf-8'))
-    .replace(/%CSP_SOURCE%/g, panel.webview.cspSource)
+    .replace(/%CSP_SOURCE%/gu, panel.webview.cspSource)
     .replace(
-      /<(script src|link rel="stylesheet" href)="([^"]*)"/g,
+      /<(script src|link rel="stylesheet" href)="([^"]*)"/gu,
       (_, type, src) =>
         `<${type}="${panel.webview.asWebviewUri(
           vscode.Uri.file(path.resolve(htmlPath, '..', src))
