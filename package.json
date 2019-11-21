@@ -110,14 +110,16 @@
   },
   "scripts": {
     "lint": "eslint .",
-    "format": "prettier --write \"**/*.{js,jsx,md,json,css,prettierrc,eslintrc,html}\""
+    "format": "prettier --write \"**/*.{js,jsx,md,json,css,prettierrc,eslintrc,html}\"",
+    "check:format": "prettier --check \"**/*.{js,jsx,md,json,css,prettierrc,eslintrc,html}\"",
+    "check": "npm run lint && npm run check:format"
   },
   "devDependencies": {
-    "eslint": "^6.5.1",
+    "eslint": "^6.6.0",
     "eslint-config-adpyke-es6": "^1.4.13",
-    "eslint-config-prettier": "^6.4.0",
-    "glob": "^7.1.5",
-    "prettier": "^1.18.2"
+    "eslint-config-prettier": "^6.7.0",
+    "glob": "^7.1.6",
+    "prettier": "^1.19.1"
   },
   "dependencies": {
     "dom-to-image-more": "^2.8.0",

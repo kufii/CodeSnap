@@ -6,12 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="img-src %CSP_SOURCE% data: https:; script-src %CSP_SOURCE%; style-src 'unsafe-inline' %CSP_SOURCE%;"
+      content="default-src 'none'; img-src %CSP_SOURCE% data: https:; script-src %CSP_SOURCE%; style-src 'unsafe-inline' %CSP_SOURCE%;"
     />
     <title>CodeSnap 📸</title>
     <link rel="stylesheet" href="./style.css" />
     <script src="../node_modules/dom-to-image-more/dist/dom-to-image-more.min.js" async></script>
-    <script src="./index.js" type="module"></script>
+    <script src="./src/index.js" type="module"></script>
   </head>
   <body>
     <div id="snippet-container">
