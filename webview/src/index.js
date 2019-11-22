@@ -1,6 +1,6 @@
 import { $, setVar } from './util.js';
 import { pasteCode } from './code.js';
-import { takeSnap, cameraFlashAnimation } from './camera.js';
+import { takeSnap, cameraFlashAnimation } from './snap.js';
 
 const navbarNode = $('#navbar');
 const windowTitleNode = $('#window-title');
