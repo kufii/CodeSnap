@@ -115,7 +115,7 @@
     "check": "npm run lint && npm run check:format"
   },
   "devDependencies": {
-    "eslint": "^6.6.0",
+    "eslint": "^6.7.1",
     "eslint-config-adpyke-es6": "^1.4.13",
     "eslint-config-prettier": "^6.7.0",
     "glob": "^7.1.6",
