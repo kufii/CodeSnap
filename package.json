@@ -37,6 +37,13 @@
         "title": "CodeSnap 📸"
       }
     ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "codesnap.start"
+        }
+      ]
+    },
     "configuration": {
       "type": "object",
       "title": "CodeSnap",
