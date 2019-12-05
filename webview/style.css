@@ -12,8 +12,7 @@ body {
   display: flex;
   flex-flow: column;
   align-items: center;
-  /* for some reason, dom-to-image breaks when font-ligatures are disabled */
-  font-variant-ligatures: normal;
+  font-variant-ligatures: var(--ligatures);
   tab-size: var(--tab-size);
   user-select: none;
 }
