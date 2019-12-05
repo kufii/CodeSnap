@@ -12,11 +12,15 @@
 ## Usage Instructions
 
 1. Open the command palette (Ctrl+Shift+P on Windows and Linux, Cmd+Shift+P on OS X) and search for `CodeSnap`.
-   - If you'd like to bind this to a hotkey, open up your keyboard shortcut settings and bind `codesnap.start` to a custom keybinding.
 2. Select the code you'd like to screenshot.
 3. Adjust the width of the screenshot if desired.
 4. Click the shutter button to save the screenshot to your disk.
-   - Alternatively, if you'd like to copy to clipboard, click the image and press the copy keyboard shortcut (defaults are Ctrl+C on Windows and Linux, Cmd+C on OS X).
+
+**Tips**:
+
+- You can also start CodeSnap by selecting code, right clicking, and clicking CodeSnap
+- If you'd like to bind CodeSnap to a hotkey, open up your keyboard shortcut settings and bind `codesnap.start` to a custom keybinding.
+- If you'd like to copy to clipboard instead of saving, click the image and press the copy keyboard shortcut (defaults are Ctrl+C on Windows and Linux, Cmd+C on OS X).
 
 ## Examples
 

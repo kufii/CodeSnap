@@ -4,6 +4,10 @@ All notable changes to the "codesnap" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.18]
+
+- Added command in right click context menu
+
 ## [1.0.14]
 
 - Added usage instructions to readme
