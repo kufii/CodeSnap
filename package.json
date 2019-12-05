@@ -115,14 +115,13 @@
     "check": "npm run lint && npm run check:format"
   },
   "devDependencies": {
-    "eslint": "^6.7.1",
+    "eslint": "^6.7.2",
     "eslint-config-adpyke-es6": "^1.4.13",
     "eslint-config-prettier": "^6.7.0",
     "glob": "^7.1.6",
     "prettier": "^1.19.1"
   },
   "dependencies": {
-    "dom-to-image-more": "^2.8.0",
     "img-clipboard": "^1.0.2"
   }
 }
