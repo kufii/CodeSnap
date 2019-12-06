@@ -21,6 +21,9 @@ const setupLines = (node, config) => {
     }
 
     row.classList.add('line-code');
+    const span = document.createElement('span');
+    span.textContent = ' ';
+    row.appendChild(span);
     newRow.appendChild(row);
   });
 };

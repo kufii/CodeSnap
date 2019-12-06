@@ -5,7 +5,6 @@ import { takeSnap, cameraFlashAnimation } from './snap.js';
 const navbarNode = $('#navbar');
 const windowTitleNode = $('#window-title');
 const btnSave = $('#save');
-const zoomContainerNode = $('#zoom-container');
 
 let config;
 
@@ -27,8 +26,7 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
       containerPadding,
       roundedCorners,
       showWindowControls,
-      windowTitle,
-      windowZoom
+      windowTitle
     } = config;
 
     setVar('ligatures', fontLigatures ? 'normal' : 'none');
@@ -38,7 +36,6 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
     setVar('container-padding', containerPadding);
     setVar('window-border-radius', roundedCorners ? '4px' : 0);
 
-    zoomContainerNode.style.zoom = windowZoom;
     navbarNode.hidden = !showWindowControls;
     windowTitleNode.textContent = windowTitle;
 

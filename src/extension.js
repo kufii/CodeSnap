@@ -33,15 +33,11 @@ const getConfig = () => {
     windowTitle = `${vscode.workspace.name} - ${activeFileName}`;
   }
 
-  const { zoomLevel } = getSettings('window', ['zoomLevel']);
-  const windowZoom = 1 + zoomLevel * -0.2;
-
   return {
     ...editorSettings,
     ...extensionSettings,
     startLine,
-    windowTitle,
-    windowZoom
+    windowTitle
   };
 };
 
