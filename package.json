@@ -129,6 +129,7 @@
     "prettier": "^1.19.1"
   },
   "dependencies": {
+    "dom-to-image-even-more": "^1.0.0",
     "img-clipboard": "^1.0.2"
   }
 }
