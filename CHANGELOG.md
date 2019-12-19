@@ -4,6 +4,10 @@ All notable changes to the "codesnap" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.0.21]
+
+- Update copy to clipboard permissions for OS X
+
 ## [1.0.20]
 
 - Support `editor.fontLigatures: false`
