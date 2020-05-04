@@ -40,10 +40,13 @@ body {
   margin-bottom: 15px;
   text-align: center;
 }
-.navbar-controls {
+#window-controls {
   display: flex;
   float: left;
   margin-top: 2px;
+}
+#window-controls.hidden {
+  display: none;
 }
 #window-title {
   /* width of window controls (and a bit) so they don't overlap */
