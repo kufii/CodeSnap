@@ -42,15 +42,10 @@ const getConfig = () => {
 };
 
 const createPanel = async context => {
-  const panel = vscode.window.createWebviewPanel(
-    'codesnap',
-    'CodeSna`p 📸',
-    vscode.ViewColumn.Two,
-    {
-      enableScripts: true,
-      localResourceRoots: [vscode.Uri.file(context.extensionPath)]
-    }
-  );
+  const panel = vscode.window.createWebviewPanel('codesnap', 'CodeSnap 📸', vscode.ViewColumn.Two, {
+    enableScripts: true,
+    localResourceRoots: [vscode.Uri.file(context.extensionPath)]
+  });
   panel.webview.html = await readHtml(
     path.resolve(context.extensionPath, 'webview/index.html'),
     panel
