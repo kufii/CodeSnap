@@ -45,7 +45,7 @@ body {
   float: left;
   margin-top: 2px;
 }
-#window-controls.hidden {
+#window-controls[hidden] {
   display: none;
 }
 #window-title {

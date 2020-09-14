@@ -38,10 +38,8 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
     setVar('container-padding', containerPadding);
     setVar('window-border-radius', roundedCorners ? '4px' : 0);
 
-
     navbarNode.hidden = !showWindowControls && !showWindowTitle;
-    showWindowControls ? windowControlsNode.classList.remove('hidden') : windowControlsNode.classList.add('hidden');
-
+    windowControlsNode.hidden = !showWindowControls;
     windowTitleNode.hidden = !showWindowTitle;
 
     windowTitleNode.textContent = windowTitle;
