@@ -32,6 +32,7 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
     } = config;
 
     setVar('ligatures', fontLigatures ? 'normal' : 'none');
+    if (typeof fontLigatures === 'string') setVar('font-features', fontLigatures);
     setVar('tab-size', tabSize);
     setVar('container-background-color', backgroundColor);
     setVar('box-shadow', boxShadow);

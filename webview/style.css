@@ -1,5 +1,6 @@
 html {
   --ligatures: normal;
+  --font-features: initial;
   --tab-size: 4;
   --container-background-color: #abb8c3;
   --box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
@@ -13,6 +14,7 @@ body {
   flex-flow: column;
   align-items: center;
   font-variant-ligatures: var(--ligatures);
+  font-feature-settings: var(--font-features);
   tab-size: var(--tab-size);
   user-select: none;
 }
