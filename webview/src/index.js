@@ -3,6 +3,7 @@ import { pasteCode } from './code.js';
 import { takeSnap, cameraFlashAnimation } from './snap.js';
 
 const navbarNode = $('#navbar');
+const windowControlsNode = $('#window-controls');
 const windowTitleNode = $('#window-title');
 const btnSave = $('#save');
 
@@ -26,6 +27,7 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
       containerPadding,
       roundedCorners,
       showWindowControls,
+      showWindowTitle,
       windowTitle
     } = config;
 
@@ -36,7 +38,12 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
     setVar('container-padding', containerPadding);
     setVar('window-border-radius', roundedCorners ? '4px' : 0);
 
-    navbarNode.hidden = !showWindowControls;
+
+    navbarNode.hidden = !showWindowControls && !showWindowTitle;
+    showWindowControls ? windowControlsNode.classList.remove('hidden') : windowControlsNode.classList.add('hidden');
+
+    windowTitleNode.hidden = !showWindowTitle;
+
     windowTitleNode.textContent = windowTitle;
 
     document.execCommand('paste');
