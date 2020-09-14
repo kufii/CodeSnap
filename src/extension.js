@@ -42,10 +42,15 @@ const getConfig = () => {
 };
 
 const createPanel = async context => {
-  const panel = vscode.window.createWebviewPanel('codesnap', 'CodeSnap 📸', vscode.ViewColumn.Two, {
-    enableScripts: true,
-    localResourceRoots: [vscode.Uri.file(context.extensionPath)]
-  });
+  const panel = vscode.window.createWebviewPanel(
+    'codesnap',
+    'CodeSna`p 📸',
+    vscode.ViewColumn.Two,
+    {
+      enableScripts: true,
+      localResourceRoots: [vscode.Uri.file(context.extensionPath)]
+    }
+  );
   panel.webview.html = await readHtml(
     path.resolve(context.extensionPath, 'webview/index.html'),
     panel
@@ -82,10 +87,10 @@ const runCommand = async context => {
 
   const update = () => {
     vscode.commands.executeCommand('editor.action.clipboardCopyAction');
-    panel.postMessage({ type: 'update', ...getConfig() });
+    panel.webview.postMessage({ type: 'update', ...getConfig() });
   };
 
-  const flash = () => panel.postMessage({ type: 'flash' });
+  const flash = () => panel.webview.postMessage({ type: 'flash' });
 
   panel.webview.onDidReceiveMessage(async ({ type, data }) => {
     if (type === 'save') {
