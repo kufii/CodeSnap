@@ -3,7 +3,7 @@ import { $, $$, setVar, calcTextWidth } from './util.js';
 const snippetNode = $('#snippet');
 
 const setupLines = (node, config) => {
-  $$(':scope > br', node).forEach(row => (row.outerHTML = '<div>&nbsp;</div>'));
+  $$(':scope > br', node).forEach((row) => (row.outerHTML = '<div>&nbsp;</div>'));
 
   const rows = $$(':scope > div', node);
   setVar('line-number-width', calcTextWidth(rows.length + config.startLine));
@@ -28,23 +28,23 @@ const setupLines = (node, config) => {
   });
 };
 
-const stripInitialIndent = node => {
+const stripInitialIndent = (node) => {
   const regIndent = /^\s+/u;
   const initialSpans = $$(':scope > div > span:first-child', node);
-  if (initialSpans.some(span => !regIndent.test(span.textContent))) return;
+  if (initialSpans.some((span) => !regIndent.test(span.textContent))) return;
   const minIndent = Math.min(
-    ...initialSpans.map(span => span.textContent.match(regIndent)[0].length)
+    ...initialSpans.map((span) => span.textContent.match(regIndent)[0].length)
   );
-  initialSpans.forEach(span => (span.textContent = span.textContent.slice(minIndent)));
+  initialSpans.forEach((span) => (span.textContent = span.textContent.slice(minIndent)));
 };
 
-const getClipboardHtml = clip => {
+const getClipboardHtml = (clip) => {
   const html = clip.getData('text/html');
   if (html) return html;
   const text = clip
     .getData('text/plain')
     .split('\n')
-    .map(line => `<div>${line}</div>`)
+    .map((line) => `<div>${line}</div>`)
     .join('');
   return `<div>${text}</div>`;
 };

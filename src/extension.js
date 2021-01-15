@@ -41,7 +41,7 @@ const getConfig = () => {
   };
 };
 
-const createPanel = async context => {
+const createPanel = async (context) => {
   const panel = vscode.window.createWebviewPanel('codesnap', 'CodeSnap 📸', vscode.ViewColumn.Two, {
     enableScripts: true,
     localResourceRoots: [vscode.Uri.file(context.extensionPath)]
@@ -55,7 +55,7 @@ const createPanel = async context => {
 };
 
 let lastUsedImageUri = vscode.Uri.file(path.resolve(homedir(), 'Desktop/code.png'));
-const saveImage = async data => {
+const saveImage = async (data) => {
   const uri = await vscode.window.showSaveDialog({
     filters: { Images: ['png'] },
     defaultUri: lastUsedImageUri
@@ -64,7 +64,7 @@ const saveImage = async data => {
   uri && writeFile(uri.fsPath, Buffer.from(data, 'base64'));
 };
 
-const copyImage = async data => {
+const copyImage = async (data) => {
   const [err, stdout, stderr] = await copyImg(Buffer.from(data, 'base64'));
   if (!err) return;
   if (err.code === ErrorCodes.COMMAND_NOT_FOUND && process.platform === 'linux')
@@ -74,10 +74,10 @@ const copyImage = async data => {
   else vscode.window.showErrorMessage('CodeSnap: ' + stdout + stderr);
 };
 
-const hasOneSelection = selections =>
+const hasOneSelection = (selections) =>
   selections && selections.length === 1 && !selections[0].isEmpty;
 
-const runCommand = async context => {
+const runCommand = async (context) => {
   const panel = await createPanel(context);
 
   const update = () => {
@@ -98,7 +98,7 @@ const runCommand = async context => {
   });
 
   const selectionHandler = vscode.window.onDidChangeTextEditorSelection(
-    e => hasOneSelection(e.selections) && update()
+    (e) => hasOneSelection(e.selections) && update()
   );
   panel.onDidDispose(() => selectionHandler.dispose());
 
@@ -106,7 +106,7 @@ const runCommand = async context => {
   if (editor && hasOneSelection(editor.selections)) update();
 };
 
-module.exports.activate = context =>
+module.exports.activate = (context) =>
   context.subscriptions.push(
     vscode.commands.registerCommand('codesnap.start', () => runCommand(context))
   );

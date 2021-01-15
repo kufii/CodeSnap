@@ -28,11 +28,11 @@ export const takeSnap = async (config, type = 'save') => {
   const url = await domtoimage.toPng(target, {
     bgColor: 'transparent',
     scale: SNAP_SCALE,
-    postProcess: node => {
+    postProcess: (node) => {
       $$('#snippet-container, #snippet, .line, .line-code span', node).forEach(
-        span => (span.style.width = 'unset')
+        (span) => (span.style.width = 'unset')
       );
-      $$('.line-code', node).forEach(span => (span.style.width = '100%'));
+      $$('.line-code', node).forEach((span) => (span.style.width = '100%'));
     }
   });
 

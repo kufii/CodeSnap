@@ -13,7 +13,7 @@ btnSave.addEventListener('click', () => takeSnap(config));
 
 document.addEventListener('copy', () => takeSnap(config, 'copy'));
 
-document.addEventListener('paste', e => pasteCode(config, e.clipboardData));
+document.addEventListener('paste', (e) => pasteCode(config, e.clipboardData));
 
 window.addEventListener('message', ({ data: { type, ...cfg } }) => {
   if (type === 'update') {
