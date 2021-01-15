@@ -20,11 +20,17 @@ const setupLines = (node, config) => {
       newRow.appendChild(lineNum);
     }
 
-    row.classList.add('line-code');
     const span = document.createElement('span');
     span.textContent = ' ';
     row.appendChild(span);
-    newRow.appendChild(row);
+
+    const lineCodeDiv = document.createElement('div');
+    lineCodeDiv.classList.add('line-code');
+    const lineCode = document.createElement('span');
+    lineCode.innerHTML = row.innerHTML;
+    lineCodeDiv.appendChild(lineCode);
+
+    newRow.appendChild(lineCodeDiv);
   });
 };
 
