@@ -11,7 +11,7 @@
   "icon": "icon.png",
   "license": "MIT",
   "engines": {
-    "vscode": "^1.49.0"
+    "vscode": "^1.52.0"
   },
   "keywords": [
     "screenshot",
