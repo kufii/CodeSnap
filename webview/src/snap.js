@@ -17,7 +17,7 @@ export const cameraFlashAnimation = async () => {
   flashFx.style.opacity = '1';
 };
 
-export const takeSnap = async (config, type = 'save') => {
+export const takeSnap = async (config) => {
   windowNode.style.resize = 'none';
   if (config.transparentBackground || config.target === 'window') {
     setVar('container-background-color', 'transparent');
@@ -36,7 +36,7 @@ export const takeSnap = async (config, type = 'save') => {
     }
   });
 
-  vscode.postMessage({ type, data: url.slice(url.indexOf(',') + 1) });
+  vscode.postMessage({ type: config.shutterAction, data: url.slice(url.indexOf(',') + 1) });
 
   windowNode.style.resize = 'horizontal';
   setVar('container-background-color', config.backgroundColor);
