@@ -120,7 +120,7 @@
             "copy"
           ],
           "default": "save",
-          "description": "The behavior of the shutter action"
+          "description": "The behavior of the shutter button"
         }
       }
     }
