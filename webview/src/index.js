@@ -11,7 +11,7 @@ let config;
 
 btnSave.addEventListener('click', () => takeSnap(config));
 
-document.addEventListener('copy', () => takeSnap(config, 'copy'));
+document.addEventListener('copy', () => takeSnap({ ...config, shutterAction: 'copy' }));
 
 document.addEventListener('paste', (e) => pasteCode(config, e.clipboardData));
 

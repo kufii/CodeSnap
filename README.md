@@ -20,7 +20,7 @@
 
 - You can also start CodeSnap by selecting code, right clicking, and clicking CodeSnap
 - If you'd like to bind CodeSnap to a hotkey, open up your keyboard shortcut settings and bind `codesnap.start` to a custom keybinding.
-- If you'd like to copy to clipboard instead of saving, click the image and press the copy keyboard shortcut (defaults are Ctrl+C on Windows and Linux, Cmd+C on OS X).
+- If you'd like to copy to clipboard instead of saving, click the image and press the copy keyboard shortcut (defaults are Ctrl+C on Windows and Linux, Cmd+C on OS X), or bind `codesnap.shutterAction` to `copy` in your settings
 - The extension will not function properly if `editor.copyWithSyntaxHighlighting` is set to false. Please ensure that it's set to true.
 
 ## Examples
@@ -60,6 +60,8 @@ CodeSnap is highly configurable. Here's a list of settings you can change to tun
 **`codesnap.transparentBackground`:** Boolean value to use a transparent background when taking the screenshot.
 
 **`codesnap.target`:** Either `container` to take the screenshot with the container, or `window` to only take the window.
+
+**`codesnap.shutterAction`:** Either `save` to save the screenshot into a file, or `copy` to copy the screenshot into the clipboard.
 
 ## Copy to Clipboard support in Linux
 
