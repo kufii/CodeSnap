@@ -43,7 +43,7 @@ const getConfig = () => {
 };
 
 const createPanel = async (context) => {
-  const panel = vscode.window.createWebviewPanel('codesnap', 'CodeSnap 📸', vscode.ViewColumn.Active, {
+  const panel = vscode.window.createWebviewPanel('codesnap', 'CodeSnap 📸', vscode.ViewColumn.Two, {
     enableScripts: true,
     localResourceRoots: [vscode.Uri.file(context.extensionPath)]
   });

@@ -18,13 +18,19 @@ body {
   tab-size: var(--tab-size);
   user-select: none;
 }
+#snippet-scroll {
+  width: 100%;
+  overflow-x: scroll;
+  text-align: center;
+}
 #snippet-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
   padding: var(--container-padding);
   background-color: var(--container-background-color);
+  width: max-content;
+  margin: auto;
 }
 #window {
   display: flex;
@@ -33,6 +39,7 @@ body {
   box-shadow: var(--box-shadow);
   overflow: hidden;
   resize: horizontal;
+  width: max-content;
   min-width: 100px;
   padding: 18px;
   background-color: var(--vscode-editor-background);
@@ -81,8 +88,8 @@ body {
   width: 100%;
 }
 #save-container {
-  margin-top: 40px;
-  margin-bottom: 60px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   text-align: center;
 }
 .dot {

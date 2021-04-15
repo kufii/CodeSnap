@@ -4,6 +4,12 @@ All notable changes to the "codesnap" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.1.0]
+
+- Add `shutterAction` option
+- Fix issue with transparency on windows
+- Fix auto width of snap shots
+
 ## [1.0.26]
 
 - Update copy to clipboard permissions for OS X
