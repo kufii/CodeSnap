@@ -21,7 +21,8 @@ const getConfig = () => {
     'showLineNumbers',
     'realLineNumbers',
     'transparentBackground',
-    'target'
+    'target',
+    'shutterAction'
   ]);
 
   const selection = editor && editor.selection;
@@ -94,6 +95,8 @@ const runCommand = async (context) => {
     } else if (type === 'copy') {
       await copyImage(data);
       flash();
+    } else {
+      vscode.window.showErrorMessage(`CodeSnap 📸: Unknown shutterAction "${type}"`);
     }
   });
 

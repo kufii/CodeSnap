@@ -111,6 +111,16 @@
           ],
           "default": "container",
           "description": "Take the shot with or without the container"
+        },
+        "codesnap.shutterAction": {
+          "scope": "resource",
+          "type": "string",
+          "enum": [
+            "save",
+            "copy"
+          ],
+          "default": "save",
+          "description": "The behavior of the shutter button"
         }
       }
     }
