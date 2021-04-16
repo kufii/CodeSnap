@@ -4,6 +4,10 @@ All notable changes to the "codesnap" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.3.1]
+
+- Fixed issue with screenshot margins
+
 ## [1.3.0]
 
 - Add `shutterAction` option

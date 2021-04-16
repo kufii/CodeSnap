@@ -19,9 +19,9 @@ body {
   user-select: none;
 }
 #snippet-scroll {
-  width: 100%;
+  max-width: 100%;
   overflow-x: scroll;
-  text-align: center;
+  margin: auto;
 }
 #snippet-container {
   display: flex;
@@ -30,7 +30,6 @@ body {
   padding: var(--container-padding);
   background-color: var(--container-background-color);
   width: max-content;
-  margin: auto;
 }
 #window {
   display: flex;
