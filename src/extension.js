@@ -43,10 +43,15 @@ const getConfig = () => {
 };
 
 const createPanel = async (context) => {
-  const panel = vscode.window.createWebviewPanel('codesnap', 'CodeSnap 📸', vscode.ViewColumn.Two, {
-    enableScripts: true,
-    localResourceRoots: [vscode.Uri.file(context.extensionPath)]
-  });
+  const panel = vscode.window.createWebviewPanel(
+    'codesnap',
+    'CodeSnap 📸',
+    { viewColumn: vscode.ViewColumn.Two, preserveFocus: true },
+    {
+      enableScripts: true,
+      localResourceRoots: [vscode.Uri.file(context.extensionPath)]
+    }
+  );
   panel.webview.html = await readHtml(
     path.resolve(context.extensionPath, 'webview/index.html'),
     panel
@@ -81,8 +86,8 @@ const hasOneSelection = (selections) =>
 const runCommand = async (context) => {
   const panel = await createPanel(context);
 
-  const update = () => {
-    vscode.commands.executeCommand('editor.action.clipboardCopyAction');
+  const update = async () => {
+    await vscode.commands.executeCommand('editor.action.clipboardCopyAction');
     panel.webview.postMessage({ type: 'update', ...getConfig() });
   };
 
