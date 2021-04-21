@@ -46,7 +46,7 @@ const createPanel = async (context) => {
   const panel = vscode.window.createWebviewPanel(
     'codesnap',
     'CodeSnap 📸',
-    { viewColumn: vscode.ViewColumn.Two, preserveFocus: true },
+    { viewColumn: vscode.ViewColumn.Beside, preserveFocus: true },
     {
       enableScripts: true,
       localResourceRoots: [vscode.Uri.file(context.extensionPath)]
