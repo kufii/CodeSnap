@@ -4,6 +4,10 @@ All notable changes to the "codesnap" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.3.3]
+
+- Fixed issue with copy to clipboard in windows
+  
 ## [1.3.2]
 
 - Fixed issue with inconsistent start up
