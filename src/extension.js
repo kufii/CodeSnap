@@ -87,7 +87,7 @@ const runCommand = async (context) => {
   const panel = await createPanel(context);
 
   const update = async () => {
-    await vscode.commands.executeCommand('editor.action.clipboardCopyAction');
+    await vscode.commands.executeCommand('editor.action.clipboardCopyWithSyntaxHighlightingAction');
     panel.webview.postMessage({ type: 'update', ...getConfig() });
   };
 
