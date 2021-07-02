@@ -36,7 +36,17 @@ export const takeSnap = async (config) => {
     }
   });
 
-  vscode.postMessage({ type: config.shutterAction, data: url.slice(url.indexOf(',') + 1) });
+  const data = url.slice(url.indexOf(',') + 1);
+  if (config.shutterAction === 'copy') {
+    const binary = atob(data);
+    const array = new Uint8Array(binary.length);
+    for (let i = 0; i < binary.length; i++) array[i] = binary.charCodeAt(i);
+    const blob = new Blob([array], { type: 'image/png' });
+    navigator.clipboard.write([new ClipboardItem({ 'image/png': blob })]);
+    cameraFlashAnimation();
+  } else {
+    vscode.postMessage({ type: config.shutterAction, data });
+  }
 
   windowNode.style.resize = 'horizontal';
   setVar('container-background-color', config.backgroundColor);

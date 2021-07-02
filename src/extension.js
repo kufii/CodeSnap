@@ -4,7 +4,6 @@ const vscode = require('vscode');
 const path = require('path');
 const { homedir } = require('os');
 const { readHtml, writeFile, getSettings } = require('./util');
-const { copyImg, isWayland, ErrorCodes } = require('img-clipboard');
 
 const getConfig = () => {
   const editorSettings = getSettings('editor', ['fontLigatures', 'tabSize']);
@@ -70,16 +69,6 @@ const saveImage = async (data) => {
   uri && writeFile(uri.fsPath, Buffer.from(data, 'base64'));
 };
 
-const copyImage = async (data) => {
-  const [err, stdout, stderr] = await copyImg(Buffer.from(data, 'base64'));
-  if (!err) return;
-  if (err.code === ErrorCodes.COMMAND_NOT_FOUND && process.platform === 'linux')
-    vscode.window.showErrorMessage(
-      `CodeSnap: ${isWayland() ? 'wl-clipboard' : 'xclip'} is not installed`
-    );
-  else vscode.window.showErrorMessage('CodeSnap: ' + stdout + stderr);
-};
-
 const hasOneSelection = (selections) =>
   selections && selections.length === 1 && !selections[0].isEmpty;
 
@@ -97,9 +86,6 @@ const runCommand = async (context) => {
     if (type === 'save') {
       flash();
       await saveImage(data);
-    } else if (type === 'copy') {
-      await copyImage(data);
-      flash();
     } else {
       vscode.window.showErrorMessage(`CodeSnap 📸: Unknown shutterAction "${type}"`);
     }
