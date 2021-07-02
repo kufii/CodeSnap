@@ -62,22 +62,6 @@ CodeSnap is highly configurable. Here's a list of settings you can change to tun
 
 **`codesnap.shutterAction`:** Either `save` to save the screenshot into a file, or `copy` to copy the screenshot into the clipboard.
 
-## Copy to Clipboard support in Linux
-
-In order for this feature to work in Linux you must install `xclip`.
-
-Usually you can simply install it using your distribution's package manager:
-
-```sh
-# ubuntu / debian
-sudo apt install xclip
-
-# arch / manjaro
-pacman -S xclip
-```
-
-If you're using [Wayland](https://wayland.freedesktop.org/) (rather than X) as your compositing window manager install [`wl-clipboard`](https://github.com/bugaevc/wl-clipboard) instead.
-
 ## Acknowledgements
 
 The great [Polacode](https://github.com/octref/polacode), for the initial concept.

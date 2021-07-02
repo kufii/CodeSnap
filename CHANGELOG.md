@@ -11,7 +11,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [1.3.3]
 
 - Fixed issue with copy to clipboard in windows
-  
+
 ## [1.3.2]
 
 - Fixed issue with inconsistent start up
