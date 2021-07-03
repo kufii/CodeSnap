@@ -30,7 +30,7 @@ const getConfig = () => {
   let windowTitle = '';
   if (editor && extensionSettings.showWindowTitle) {
     const activeFileName = editor.document.uri.path.split('/').pop();
-    windowTitle = `${vscode.workspace.name} - ${activeFileName}`;
+    windowTitle = `${activeFileName}`;
   }
 
   return {
