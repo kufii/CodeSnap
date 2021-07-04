@@ -121,6 +121,12 @@
           ],
           "default": "save",
           "description": "The behavior of the shutter button"
+        },
+        "codesnap.trimEmptyLines": {
+          "scope": "resource",
+          "type": "boolean",
+          "default": false,
+          "description": "Trim off empty lines at the beginning and at the end"
         }
       }
     }
