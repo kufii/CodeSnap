@@ -44,6 +44,16 @@ const stripInitialIndent = (node) => {
   initialSpans.forEach((span) => (span.textContent = span.textContent.slice(minIndent)));
 };
 
+const isEmptyLine = (node) => node.innerText.match(/^\s*$/);
+
+const trimEmptyLines = (node, config) => {
+  while(isEmptyLine(node.firstChild)) {
+    node.removeChild(node.firstChild);
+    if(config.realLineNumbers) config.startLine++;
+  }
+  while(isEmptyLine(node.lastChild)) node.removeChild(node.lastChild);
+}
+
 const getClipboardHtml = (clip) => {
   const html = clip.getData('text/html');
   if (html) return html;
@@ -62,5 +72,6 @@ export const pasteCode = (config, clipboard) => {
   snippetNode.style.lineHeight = code.style.lineHeight;
   snippetNode.innerHTML = code.innerHTML;
   stripInitialIndent(snippetNode);
+  if(config.trimEmptyLines) trimEmptyLines(snippetNode, config);
   setupLines(snippetNode, config);
 };

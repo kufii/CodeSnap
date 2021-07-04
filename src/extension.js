@@ -21,7 +21,8 @@ const getConfig = () => {
     'realLineNumbers',
     'transparentBackground',
     'target',
-    'shutterAction'
+    'shutterAction',
+    'trimEmptyLines'
   ]);
 
   const selection = editor && editor.selection;
