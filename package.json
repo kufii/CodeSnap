@@ -54,6 +54,12 @@
           "default": "#abb8c3",
           "description": "The background color of the snippet's container"
         },
+        "codesnap.background": {
+          "scope": "resource",
+          "type": "string",
+          "default": "transparent",
+          "description": "The background of the snippet's container"
+        },
         "codesnap.boxShadow": {
           "scope": "resource",
           "type": "string",

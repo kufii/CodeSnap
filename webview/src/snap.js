@@ -1,3 +1,4 @@
+
 import { $, $$, redraw, once, setVar } from './util.js';
 
 const vscode = acquireVsCodeApi();
@@ -50,4 +51,5 @@ export const takeSnap = async (config) => {
 
   windowNode.style.resize = 'horizontal';
   setVar('container-background-color', config.backgroundColor);
+  setVar('container-background', config.background);
 };
