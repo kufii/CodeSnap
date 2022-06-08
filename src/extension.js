@@ -12,6 +12,7 @@ const getConfig = () => {
 
   const extensionSettings = getSettings('codesnap', [
     'backgroundColor',
+    'background',
     'boxShadow',
     'containerPadding',
     'roundedCorners',

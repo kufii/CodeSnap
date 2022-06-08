@@ -23,6 +23,7 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
       fontLigatures,
       tabSize,
       backgroundColor,
+      background,
       boxShadow,
       containerPadding,
       roundedCorners,
@@ -35,6 +36,7 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
     if (typeof fontLigatures === 'string') setVar('font-features', fontLigatures);
     setVar('tab-size', tabSize);
     setVar('container-background-color', backgroundColor);
+    setVar('container-background', background);
     setVar('box-shadow', boxShadow);
     setVar('container-padding', containerPadding);
     setVar('window-border-radius', roundedCorners ? '4px' : 0);
