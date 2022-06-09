@@ -72,6 +72,12 @@
           "default": true,
           "description": "Use rounded corners for the window"
         },
+        "codesnap.headerDotSize": {
+          "scope": "resource",
+          "type": "string",
+          "default": "15px",
+          "description": "The size of the snippet's header dot"
+        },
         "codesnap.showWindowControls": {
           "scope": "resource",
           "type": "boolean",

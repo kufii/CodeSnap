@@ -15,6 +15,7 @@ const getConfig = () => {
     'boxShadow',
     'containerPadding',
     'roundedCorners',
+    'headerDotSize',
     'showWindowControls',
     'showWindowTitle',
     'showLineNumbers',

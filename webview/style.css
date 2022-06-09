@@ -6,6 +6,7 @@ html {
   --box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
   --container-padding: 3em;
   --window-border-radius: 4px;
+  --header-dot-size: 15px;
   box-sizing: border-box;
 }
 body {
@@ -92,10 +93,10 @@ body {
   text-align: center;
 }
 .dot {
-  width: 15px;
-  height: 15px;
+  width: var(--header-dot-size);
+  height: var(--header-dot-size);
   border-radius: 50%;
-  margin-right: 10px;
+  margin-right: calc(var(--header-dot-size) * 2 / 3);
 }
 .red {
   background-color: #ff5f5a;
