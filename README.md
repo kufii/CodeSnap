@@ -48,7 +48,7 @@ CodeSnap is highly configurable. Here's a list of settings you can change to tun
 
 **`codesnap.roundedCorners`:** Boolean value to use rounded corners or square corners for the window.
 
-**`codesnap.headerDotSize`:** Either size for the snippet's header dot. Can be any valid CSS width or height.
+**`codesnap.headerDotSize`:** The size for the snippet's header dot. Can be any valid CSS width or height.
 
 **`codesnap.showWindowControls`:** Boolean value to show or hide OS X style window buttons.
 
