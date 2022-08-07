@@ -6,7 +6,7 @@ const { homedir } = require('os');
 const { readHtml, writeFile, getSettings } = require('./util');
 
 const getConfig = () => {
-  const editorSettings = getSettings('editor', ['fontLigatures', 'tabSize']);
+  const editorSettings = getSettings('editor', ['fontLigatures', 'tabSize', 'letterSpacing']);
   const editor = vscode.window.activeTextEditor;
   if (editor) editorSettings.tabSize = editor.options.tabSize;
 
