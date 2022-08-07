@@ -22,6 +22,7 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
     const {
       fontLigatures,
       tabSize,
+      letterSpacing,
       backgroundColor,
       boxShadow,
       containerPadding,
@@ -33,6 +34,7 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
 
     setVar('ligatures', fontLigatures ? 'normal' : 'none');
     if (typeof fontLigatures === 'string') setVar('font-features', fontLigatures);
+    setVar('letter-spacing', letterSpacing);
     setVar('tab-size', tabSize);
     setVar('container-background-color', backgroundColor);
     setVar('box-shadow', boxShadow);

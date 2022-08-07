@@ -4,6 +4,10 @@ All notable changes to the "codesnap" extension will be documented in this file.
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [1.3.5]
+
+- Support `editor.letterSpacing`
+
 ## [1.3.4]
 
 - Fix issue where extension didn't work with `editor.copyWithSyntaxHighlighting: false`

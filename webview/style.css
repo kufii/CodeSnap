@@ -6,6 +6,7 @@ html {
   --box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
   --container-padding: 3em;
   --window-border-radius: 4px;
+  --letter-spacing: 0px;
   box-sizing: border-box;
 }
 body {
@@ -69,6 +70,7 @@ body {
   font-family: var(--vscode-editor-font-family);
   font-size: calc(var(--vscode-editor-font-size) * 1px);
   font-weight: var(--vscode-editor-font-weight);
+  letter-spacing: calc(var(--letter-spacing) * 1px);
 }
 .line {
   display: flex;
@@ -115,6 +117,7 @@ body {
 .size-test {
   font-family: var(--vscode-editor-font-family) !important;
   font-size: calc(var(--vscode-editor-font-size) * 1px) !important;
+  letter-spacing: calc(var(--letter-spacing) * 1px) !important;
   display: inline-block;
 }
 #flash-fx {
