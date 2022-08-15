@@ -29,6 +29,7 @@ body {
   align-items: center;
   padding: var(--container-padding);
   background-color: var(--container-background-color);
+  background: var(--container-background-color);
   width: max-content;
 }
 #window {
