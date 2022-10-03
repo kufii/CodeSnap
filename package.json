@@ -1,6 +1,6 @@
 {
-  "name": "codesnap",
-  "displayName": "CodeSnap",
+  "name": "codesnap-plus",
+  "displayName": "CodeSnap-plus",
   "description": "📷 Take beautiful screenshots of your code",
   "version": "1.3.4",
   "repository": {
@@ -21,26 +21,26 @@
     "share",
     "polacode",
     "carbon",
-    "codesnap"
+    "codesnap-plus"
   ],
   "categories": [
     "Other"
   ],
   "activationEvents": [
-    "onCommand:codesnap.start"
+    "onCommand:codesnap-plus.start"
   ],
   "main": "./src/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "codesnap.start",
-        "title": "CodeSnap 📸"
+        "command": "codesnap-plus.start",
+        "title": "CodeSnap-plus 📸"
       }
     ],
     "menus": {
       "editor/context": [
         {
-          "command": "codesnap.start"
+          "command": "codesnap-plus.start"
         }
       ]
     },
@@ -48,61 +48,61 @@
       "type": "object",
       "title": "CodeSnap",
       "properties": {
-        "codesnap.backgroundColor": {
+        "codesnap-plus.backgroundColor": {
           "scope": "resource",
           "type": "string",
           "default": "#abb8c3",
           "description": "The background color of the snippet's container"
         },
-        "codesnap.boxShadow": {
+        "codesnap-plus.boxShadow": {
           "scope": "resource",
           "type": "string",
           "default": "rgba(0, 0, 0, 0.55) 0px 20px 68px",
           "description": "The CSS box-shadow for the snippet"
         },
-        "codesnap.containerPadding": {
+        "codesnap-plus.containerPadding": {
           "scope": "resource",
           "type": "string",
           "default": "3em",
           "description": "The padding for the snippet's container"
         },
-        "codesnap.roundedCorners": {
+        "codesnap-plus.roundedCorners": {
           "scope": "resource",
           "type": "boolean",
           "default": true,
           "description": "Use rounded corners for the window"
         },
-        "codesnap.showWindowControls": {
+        "codesnap-plus.showWindowControls": {
           "scope": "resource",
           "type": "boolean",
           "default": true,
           "description": "Display OS X style window controls"
         },
-        "codesnap.showWindowTitle": {
+        "codesnap-plus.showWindowTitle": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
           "description": "Display window title with open folder / file name"
         },
-        "codesnap.showLineNumbers": {
+        "codesnap-plus.showLineNumbers": {
           "scope": "resource",
           "type": "boolean",
           "default": true,
           "description": "Display line numbers"
         },
-        "codesnap.realLineNumbers": {
+        "codesnap-plus.realLineNumbers": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
           "description": "Start from the selection's line number instead of 1"
         },
-        "codesnap.transparentBackground": {
+        "codesnap-plus.transparentBackground": {
           "scope": "resource",
           "type": "boolean",
           "default": false,
           "description": "Use a transparent background when taking the screenshot"
         },
-        "codesnap.target": {
+        "codesnap-plus.target": {
           "scope": "resource",
           "type": "string",
           "enum": [
@@ -112,7 +112,7 @@
           "default": "container",
           "description": "Take the shot with or without the container"
         },
-        "codesnap.shutterAction": {
+        "codesnap-plus.shutterAction": {
           "scope": "resource",
           "type": "string",
           "enum": [
@@ -129,19 +129,21 @@
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{js,jsx,md,json,css,prettierrc,eslintrc,html}\"",
     "check:format": "prettier --check \"**/*.{js,jsx,md,json,css,prettierrc,eslintrc,html}\"",
-    "check": "npm run lint && npm run check:format"
+    "check": "npm run lint && npm run check:format",
+    "tw": "npx tailwindcss -i style.css -o ./webview/style.css --watch"
   },
   "devDependencies": {
-    "eslint": "^7.24.0",
-    "eslint-config-adpyke-es6": "^1.4.13",
-    "eslint-config-prettier": "^8.2.0",
-    "prettier": "^2.2.1",
-    "@types/vscode": "^1.52.0",
     "@types/glob": "^7.1.3",
     "@types/mocha": "^8.2.2",
     "@types/node": "^14.14.40",
+    "@types/vscode": "^1.52.0",
+    "eslint": "^7.24.0",
+    "eslint-config-adpyke-es6": "^1.4.13",
+    "eslint-config-prettier": "^8.2.0",
     "glob": "^7.1.6",
     "mocha": "^8.3.2",
+    "prettier": "^2.2.1",
+    "tailwindcss": "^3.1.8",
     "typescript": "^4.2.4",
     "vscode-test": "^1.5.2"
   },

@@ -1,0 +1,197 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  --ligatures: normal;
+  --font-features: initial;
+  --tab-size: 4;
+  --container-background-color: #abb8c3;
+  --box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
+  --container-padding: 3em;
+  --window-border-radius: 4px;
+  box-sizing: border-box;
+}
+
+body {
+  padding-top: 32px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  font-variant-ligatures: var(--ligatures);
+  font-feature-settings: var(--font-features);
+  tab-size: var(--tab-size);
+  user-select: none;
+}
+
+#snippet-scroll {
+  max-width: 100%;
+  overflow-x: scroll;
+  margin: auto;
+}
+
+#snippet-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--container-padding);
+  background-color: var(--container-background-color);
+  width: max-content;
+}
+
+#window {
+  display: flex;
+  flex-direction: column;
+  border-radius: var(--window-border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  resize: horizontal;
+  width: max-content;
+  min-width: 100px;
+  padding: 18px;
+  background-color: var(--vscode-editor-background);
+}
+
+#navbar {
+  overflow: hidden;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#window-controls {
+  display: flex;
+  float: left;
+  margin-top: 2px;
+}
+
+#window-controls[hidden] {
+  display: none;
+}
+
+#window-title {
+  /* width of window controls (and a bit) so they don't overlap */
+  margin: 0 80px;
+}
+
+#snippet {
+  max-width: 100%;
+  word-break: break-all;
+  color: var(--vscode-editor-foreground);
+  background-color: var(--vscode-editor-background);
+  font-family: var(--vscode-editor-font-family);
+  font-size: calc(var(--vscode-editor-font-size) * 1px);
+  font-weight: var(--vscode-editor-font-weight);
+}
+
+.line {
+  display: flex;
+}
+
+.line-number {
+  text-align: right;
+  color: var(--vscode-editorLineNumber-foreground);
+  margin-right: 18px;
+  width: var(--line-number-width);
+  white-space: nowrap;
+  flex: none;
+}
+
+.line-number:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.line-number-hover {
+  color: white;
+}
+
+.line-code {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.line-code-bold {
+  font-weight: bold;
+}
+
+.line-code-size {
+  font-size: calc(var(--vscode-editor-font-size) + 2px);
+}
+
+
+.line-code-size-nofirst>span>span:nth-child(1) {
+  font-size: var(--vscode-editor-font-size);
+}
+
+
+#save-container {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.dot {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.red {
+  background-color: #ff5f5a;
+}
+
+.yellow {
+  background-color: #ffbe2e;
+}
+
+.green {
+  background-color: #2aca44;
+}
+
+.shutter {
+  enable-background: new 0 0 28.3 28.3;
+  width: 64px;
+  height: 64px;
+  cursor: pointer;
+}
+
+.size-test {
+  font-family: var(--vscode-editor-font-family) !important;
+  font-size: calc(var(--vscode-editor-font-size) * 1px) !important;
+  display: inline-block;
+}
+
+#flash-fx {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  transition: opacity 200ms ease;
+  opacity: 1;
+}
+
+.line-focus-for-linenubmer {
+  @apply relative before:absolute before:-left-3 before:block before:w-1 before:h-full before:bg-sky-500;
+}
+.line-focus {
+  @apply bg-sky-300/[0.15];
+}
+
+.git-add-for-linenubmer {
+  @apply relative before:absolute before:-left-3 before:block before:h-full before:w-auto before:text-green-300 before:font-bold before:content-['+'];
+}
+.git-add {
+  @apply bg-green-300/[0.15];
+}
+
+.git-remove-for-linenubmer {
+  @apply relative before:absolute before:-left-3 before:block before:h-full before:w-auto before:text-red-500 before:font-bold before:content-['-'];
+}
+.git-remove {
+  @apply bg-red-300/[0.15];
+}

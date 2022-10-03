@@ -10,7 +10,7 @@ const getConfig = () => {
   const editor = vscode.window.activeTextEditor;
   if (editor) editorSettings.tabSize = editor.options.tabSize;
 
-  const extensionSettings = getSettings('codesnap', [
+  const extensionSettings = getSettings('codesnap-plus', [
     'backgroundColor',
     'boxShadow',
     'containerPadding',
@@ -102,5 +102,5 @@ const runCommand = async (context) => {
 
 module.exports.activate = (context) =>
   context.subscriptions.push(
-    vscode.commands.registerCommand('codesnap.start', () => runCommand(context))
+    vscode.commands.registerCommand('codesnap-plus.start', () => runCommand(context))
   );
