@@ -5,9 +5,9 @@
   "version": "1.3.4",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kufii/CodeSnap"
+    "url": "https://github.com/huibizhang/CodeSnap-plus"
   },
-  "publisher": "adpyke",
+  "publisher": "huibizhang",
   "icon": "icon.png",
   "license": "MIT",
   "engines": {

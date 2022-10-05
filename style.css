@@ -179,7 +179,7 @@ body {
   @apply relative before:absolute before:-left-3 before:block before:w-1 before:h-full before:bg-sky-500;
 }
 .line-focus {
-  @apply bg-sky-300/[0.15];
+  @apply bg-sky-300/[0.2];
 }
 
 .git-add-for-linenubmer {

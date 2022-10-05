@@ -642,9 +642,9 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.underline {
-  -webkit-text-decoration-line: underline;
-          text-decoration-line: underline;
+.\!text-white {
+  --tw-text-opacity: 1 !important;
+  color: rgb(255 255 255 / var(--tw-text-opacity)) !important;
 }
 
 .transition-all {
@@ -848,7 +848,7 @@ body {
 }
 
 .line-focus {
-  background-color: rgb(125 211 252 / 0.15);
+  background-color: rgb(125 211 252 / 0.2);
 }
 
 .git-add-for-linenubmer {

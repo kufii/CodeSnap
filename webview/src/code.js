@@ -1,5 +1,4 @@
 import { $, $$, setVar, calcTextWidth } from './util.js';
-import fixedWidth from './fixedWidth.js';
 
 const snippetNode = $('#snippet');
 
@@ -17,55 +16,10 @@ const setupLines = (node, config) => {
     if (config.showLineNumbers) {
       const lineNum = document.createElement('div');
       lineNum.classList.add('line-number');
-      // 增加行号点击事件
+      
+      // lineNumber click event
       lineNum.onclick = function (e) {
-        // 获取默认行高
-        // var defaultLineHeight = $('#snippet').style.lineHeight;
-        // if (defaultLineHeight.indexOf("px") != -1) {
-        //   defaultLineHeight = defaultLineHeight.substring(0, defaultLineHeight.length - 2);
-        // }
         var firstRowIsWhiteSpace = this.nextSibling.firstChild.firstChild.innerText.trim() === "";
-        
-        // original
-        if(false) {
-          // 判断是否已经加粗
-          if (this.nextSibling.classList.contains("line-code-bold")) {
-            // 取消添加的样式
-            this.nextSibling.classList.remove("line-code-bold");
-            this.nextSibling.classList.remove("line-code-size");
-            lineNum.classList.remove('line-number-hover');
-            if (firstRowIsWhiteSpace) {
-              this.nextSibling.classList.remove("line-code-size-nofirst");
-            }
-            this.nextSibling.classList.remove("line-code-size");
-            // 取消增加的行高
-            // this.nextSibling.style.lineHeight = defaultLineHeight + "px";
-          } else {
-            // 添加样式
-            this.nextSibling.classList.add("line-code-bold");
-            this.nextSibling.classList.add("underline");
-            this.nextSibling.classList.add("line-code-size");
-            lineNum.classList.add('line-number-hover');
-            if (firstRowIsWhiteSpace) {
-              this.nextSibling.classList.add("line-code-size-nofirst");
-            }
-            // 设置行高
-            // this.nextSibling.style.lineHeight = (Number(defaultLineHeight) + 2) + "px";
-          }
-        }
-
-        // if (firstRowIsWhiteSpace) {
-        //   this.nextSibling.classList.toggle("line-code-size-nofirst");
-        // }
-        // this.nextSibling.classList.toggle("line-code-size");
-        // this.nextSibling.classList.toggle("line-code-bold");
-
-        // this.classList.toggle("git-add-for-linenubmer");
-        // this.parentNode.classList.toggle("git-add");
-        // this.classList.toggle("git-remove-for-linenubmer");
-        // this.parentNode.classList.toggle("git-remove");
-        // this.classList.toggle("line-focus-for-linenubmer");
-        // this.parentNode.classList.toggle("line-focus");
 
         if(this.parentNode.classList.contains("line-focus")) {
           
@@ -75,6 +29,8 @@ const setupLines = (node, config) => {
           this.classList.add("git-add-for-linenubmer");
           this.parentNode.classList.add("git-add");
 
+          this.classList.add('!text-white')
+
         } else if (this.parentNode.classList.contains("git-add")) {
 
           this.classList.remove("git-add-for-linenubmer");
@@ -82,6 +38,8 @@ const setupLines = (node, config) => {
 
           this.classList.add("git-remove-for-linenubmer");
           this.parentNode.classList.add("git-remove");
+          
+          this.classList.add('!text-white')
 
         } else if (this.parentNode.classList.contains("git-remove")) {
           
@@ -91,6 +49,8 @@ const setupLines = (node, config) => {
           this.parentNode.classList.remove("git-add");
           this.classList.remove("git-remove-for-linenubmer");
           this.parentNode.classList.remove("git-remove");
+          
+          lineNum.classList.remove('text-white')
 
         } else {
           this.classList.add("line-focus-for-linenubmer");
@@ -99,6 +59,8 @@ const setupLines = (node, config) => {
           this.parentNode.classList.remove("git-add");
           this.classList.remove("git-remove-for-linenubmer");
           this.parentNode.classList.remove("git-remove");
+          
+          lineNum.classList.add('!text-white')
         }
       };
       lineNum.textContent = idx + 1 + config.startLine;
@@ -151,8 +113,6 @@ const getClipboardHtml = (clip) => {
     .join('');
   return `<div>${text}</div>`;
 };
-
-// fixedWidth();
 
 export const pasteCode = (config, clipboard) => {
   snippetNode.innerHTML = getClipboardHtml(clipboard);
