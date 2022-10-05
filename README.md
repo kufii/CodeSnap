@@ -45,15 +45,15 @@ If you want to hightlight the line just click the line number, and the line will
 
 ## Examples
 
-Hightlight Style: Focus
+Hightlight Style: **Focus**
 
 ![Hightlight-Style:Focus](https://raw.githubusercontent.com/huibizhang/CodeSnap-plus/master/examples/hightlight-focus.png)
 
-Hightlight Style: Git-Add
+Hightlight Style: **Git-Add**
 
 ![Hightlight-Style:Focus](https://raw.githubusercontent.com/huibizhang/CodeSnap-plus/master/examples/hightlight-add.png)
 
-Hightlight Style: Git-Remove
+Hightlight Style: **Git-Remove**
 
 ![Hightlight-Style:Focus](https://raw.githubusercontent.com/huibizhang/CodeSnap-plus/master/examples/hightlight-remove.png)
 
