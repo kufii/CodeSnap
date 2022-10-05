@@ -73,27 +73,27 @@ Monokai + [Fira Code](https://github.com/tonsky/FiraCode)
 
 CodeSnap is highly configurable. Here's a list of settings you can change to tune the way your screenshots look:
 
-**`codesnap.backgroundColor`:** The background color of the snippet's container. Can be any valid CSS color.
+**`codesnap-plus.backgroundColor`:** The background color of the snippet's container. Can be any valid CSS color.
 
-**`codesnap.boxShadow`:** The CSS box-shadow for the snippet. Can be any valid CSS box shadow.
+**`codesnap-plus.boxShadow`:** The CSS box-shadow for the snippet. Can be any valid CSS box shadow.
 
-**`codesnap.containerPadding`:** The padding for the snippet's container. Can be any valid CSS padding.
+**`codesnap-plus.containerPadding`:** The padding for the snippet's container. Can be any valid CSS padding.
 
-**`codesnap.roundedCorners`:** Boolean value to use rounded corners or square corners for the window.
+**`codesnap-plus.roundedCorners`:** Boolean value to use rounded corners or square corners for the window.
 
-**`codesnap.showWindowControls`:** Boolean value to show or hide OS X style window buttons.
+**`codesnap-plus.showWindowControls`:** Boolean value to show or hide OS X style window buttons.
 
-**`codesnap.showWindowTitle`:** Boolean value to show or hide window title `folder_name - file_name`.
+**`codesnap-plus.showWindowTitle`:** Boolean value to show or hide window title `folder_name - file_name`.
 
-**`codesnap.showLineNumbers`:** Boolean value to show or hide line numbers.
+**`codesnap-plus.showLineNumbers`:** Boolean value to show or hide line numbers.
 
-**`codesnap.realLineNumbers`:** Boolean value to start from the real line number of the file instead of 1.
+**`codesnap-plus.realLineNumbers`:** Boolean value to start from the real line number of the file instead of 1.
 
-**`codesnap.transparentBackground`:** Boolean value to use a transparent background when taking the screenshot.
+**`codesnap-plus.transparentBackground`:** Boolean value to use a transparent background when taking the screenshot.
 
-**`codesnap.target`:** Either `container` to take the screenshot with the container, or `window` to only take the window.
+**`codesnap-plus.target`:** Either `container` to take the screenshot with the container, or `window` to only take the window.
 
-**`codesnap.shutterAction`:** Either `save` to save the screenshot into a file, or `copy` to copy the screenshot into the clipboard.
+**`codesnap-plus.shutterAction`:** Either `save` to save the screenshot into a file, or `copy` to copy the screenshot into the clipboard.
 
 ## Acknowledgements
 
