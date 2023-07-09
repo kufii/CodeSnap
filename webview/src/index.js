@@ -15,6 +15,14 @@ document.addEventListener('copy', () => takeSnap({ ...config, shutterAction: 'co
 
 document.addEventListener('paste', (e) => pasteCode(config, e.clipboardData));
 
+// takes snapshot when ctrl + s is pressed
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === 's') {
+    e.preventDefault();
+    takeSnap(config);
+  }
+});
+
 window.addEventListener('message', ({ data: { type, ...cfg } }) => {
   if (type === 'update') {
     config = cfg;
