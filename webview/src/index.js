@@ -17,7 +17,8 @@ document.addEventListener('paste', (e) => pasteCode(config, e.clipboardData));
 
 // takes snapshot when ctrl + s is pressed
 document.addEventListener('keydown', (e) => {
-  if (e.ctrlKey && e.keyCode === 83) {
+  if (e.ctrlKey && e.key === 's') {
+    e.preventDefault();
     takeSnap(config);
   }
 });
