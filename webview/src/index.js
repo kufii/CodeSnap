@@ -1,6 +1,6 @@
-import { $, setVar } from './util.js';
 import { pasteCode } from './code.js';
-import { takeSnap, cameraFlashAnimation } from './snap.js';
+import { cameraFlashAnimation, takeSnap } from './snap.js';
+import { $, setVar } from './util.js';
 
 const navbarNode = $('#navbar');
 const windowControlsNode = $('#window-controls');
@@ -28,11 +28,13 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
       roundedCorners,
       showWindowControls,
       showWindowTitle,
-      windowTitle
+      windowTitle,
+      fontFamily
     } = config;
 
     setVar('ligatures', fontLigatures ? 'normal' : 'none');
     if (typeof fontLigatures === 'string') setVar('font-features', fontLigatures);
+    setVar('font-family', fontFamily ? fontFamily : 'vscode-editor-font-family')
     setVar('tab-size', tabSize);
     setVar('container-background-color', backgroundColor);
     setVar('box-shadow', boxShadow);
