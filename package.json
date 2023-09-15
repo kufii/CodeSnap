@@ -2,7 +2,7 @@
   "name": "codesnap",
   "displayName": "CodeSnap",
   "description": "📷 Take beautiful screenshots of your code",
-  "version": "1.3.4",
+  "version": "1.4.4",
   "repository": {
     "type": "git",
     "url": "https://github.com/kufii/CodeSnap"
@@ -121,6 +121,11 @@
           ],
           "default": "save",
           "description": "The behavior of the shutter button"
+        },
+        "codesnap.fontFamily": {
+          "scope": "resource",
+          "type": "string",
+          "description": "The font-family of the snippet's container"
         }
       }
     }
