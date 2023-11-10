@@ -27,7 +27,7 @@
     "Other"
   ],
   "activationEvents": [
-    "onCommand:codesnap.start"
+    "*"
   ],
   "main": "./src/extension.js",
   "contributes": {
