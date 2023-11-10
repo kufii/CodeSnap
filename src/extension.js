@@ -4,6 +4,7 @@ const vscode = require('vscode');
 const path = require('path');
 const { homedir } = require('os');
 const { readHtml, writeFile, getSettings } = require('./util');
+const { createStatusbarButton } = require('./statusBarButton.js');
 
 const getConfig = () => {
   const editorSettings = getSettings('editor', ['fontLigatures', 'tabSize']);
@@ -102,5 +103,6 @@ const runCommand = async (context) => {
 
 module.exports.activate = (context) =>
   context.subscriptions.push(
-    vscode.commands.registerCommand('codesnap.start', () => runCommand(context))
+    vscode.commands.registerCommand('codesnap.start', () => runCommand(context)),
+    createStatusbarButton()
   );
