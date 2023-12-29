@@ -6,6 +6,7 @@ html {
   --box-shadow: rgba(0, 0, 0, 0.55) 0px 20px 68px;
   --container-padding: 3em;
   --window-border-radius: 4px;
+  --window-width: max-content;
   box-sizing: border-box;
 }
 body {
@@ -38,7 +39,7 @@ body {
   box-shadow: var(--box-shadow);
   overflow: hidden;
   resize: horizontal;
-  width: max-content;
+  width: var(--window-width);
   min-width: 100px;
   padding: 18px;
   background-color: var(--vscode-editor-background);

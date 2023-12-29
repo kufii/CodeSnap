@@ -28,7 +28,8 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
       roundedCorners,
       showWindowControls,
       showWindowTitle,
-      windowTitle
+      windowTitle,
+      fixedWidth
     } = config;
 
     setVar('ligatures', fontLigatures ? 'normal' : 'none');
@@ -38,6 +39,7 @@ window.addEventListener('message', ({ data: { type, ...cfg } }) => {
     setVar('box-shadow', boxShadow);
     setVar('container-padding', containerPadding);
     setVar('window-border-radius', roundedCorners ? '4px' : 0);
+    if (fixedWidth) setVar('window-width', fixedWidth);
 
     navbarNode.hidden = !showWindowControls && !showWindowTitle;
     windowControlsNode.hidden = !showWindowControls;
