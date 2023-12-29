@@ -42,6 +42,8 @@ CodeSnap is highly configurable. Here's a list of settings you can change to tun
 
 **`codesnap.backgroundColor`:** The background color of the snippet's container. Can be any valid CSS color.
 
+**`codesnap.fixedWidth`:** The width of the container for the snippet. Can be any valid CSS width.
+
 **`codesnap.boxShadow`:** The CSS box-shadow for the snippet. Can be any valid CSS box shadow.
 
 **`codesnap.containerPadding`:** The padding for the snippet's container. Can be any valid CSS padding.
