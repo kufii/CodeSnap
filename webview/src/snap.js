@@ -1,4 +1,5 @@
 import { $, $$, redraw, once, setVar } from './util.js';
+import { SELECTED } from './highlight.js';
 
 const vscode = acquireVsCodeApi();
 const windowNode = $('#window');
@@ -33,6 +34,7 @@ export const takeSnap = async (config) => {
         (span) => (span.style.width = 'unset')
       );
       $$('.line-code', node).forEach((span) => (span.style.width = '100%'));
+      $$(`.${SELECTED}`, node).forEach((line) => line.classList.remove(SELECTED));
     }
   });
 

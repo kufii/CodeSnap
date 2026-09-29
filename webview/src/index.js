@@ -1,6 +1,7 @@
 import { $, setVar } from './util.js';
 import { pasteCode } from './code.js';
 import { takeSnap, cameraFlashAnimation } from './snap.js';
+import { setupHighlight, clearSelection } from './highlight.js';
 
 const navbarNode = $('#navbar');
 const windowControlsNode = $('#window-controls');
@@ -13,7 +14,12 @@ btnSave.addEventListener('click', () => takeSnap(config));
 
 document.addEventListener('copy', () => takeSnap({ ...config, shutterAction: 'copy' }));
 
-document.addEventListener('paste', (e) => pasteCode(config, e.clipboardData));
+document.addEventListener('paste', (e) => {
+  pasteCode(config, e.clipboardData);
+  clearSelection();
+});
+
+setupHighlight();
 
 window.addEventListener('message', ({ data: { type, ...cfg } }) => {
   if (type === 'update') {

@@ -22,6 +22,18 @@
 - If you'd like to bind CodeSnap to a hotkey, open up your keyboard shortcut settings and bind `codesnap.start` to a custom keybinding.
 - If you'd like to copy to clipboard instead of saving, click the image and press the copy keyboard shortcut (defaults are Ctrl+C on Windows and Linux, Cmd+C on OS X), or bind `codesnap.shutterAction` to `copy` in your settings
 
+## Highlighting Lines
+
+Select one or more lines in the CodeSnap panel, then apply a style from the toolbar that appears at the top:
+
+- **Select**: click a line, or drag across several lines
+- **Extend**: Shift+click selects the range from the last clicked line
+- **Toggle**: Ctrl+click (Cmd+click on OS X) adds or removes a single line
+- **Styles**: **Focus** (`F`), **+ Add** (`A`), **- Remove** (`R`), **Clear** (`Backspace`). Applying a style every selected line already has removes it
+- **Deselect**: `Esc` or click outside the code
+
+The selection outline is not included in the screenshot.
+
 ## Examples
 
 [Material Theme](https://marketplace.visualstudio.com/items?itemName=Equinusocio.vsc-material-theme) + [Operator Mono](https://www.typography.com/fonts/operator/styles/operatormono)
